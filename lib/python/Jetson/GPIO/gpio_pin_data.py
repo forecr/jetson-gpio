@@ -98,7 +98,16 @@ JETSON_NX_PIN_DEFS = [
     ({224: 141, 169: 113}, {169:  'PR.05'}, "2200000.gpio", 36, 16, 'UART1_CTS', 'UART1_CTS', None, None),
     ({224: 194, 169: 151}, {169:  'PY.02'}, "2200000.gpio", 37, 26, 'SPI1_MOSI', 'SPI3_MOSI', None, None),
     ({224: 159, 169: 129}, {169:  'PT.07'}, "2200000.gpio", 38, 20, 'I2S0_DIN', 'DAP5_DIN', None, None),
-    ({224: 158, 169: 128}, {169:  'PT.06'}, "2200000.gpio", 40, 21, 'I2S0_DOUT', 'DAP5_DOUT', None, None)
+    ({224: 158, 169: 128}, {169:  'PT.06'}, "2200000.gpio", 40, 21, 'I2S0_DOUT', 'DAP5_DOUT', None, None),
+# DSBOX-NX2 IIO Pins
+    (0,  {}, "31e0000.i2c/i2c-8/8-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+    (1,  {}, "31e0000.i2c/i2c-8/8-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+    (2,  {}, "31e0000.i2c/i2c-8/8-0038", 43, 43, 'DIGITAL_IN2', 'DIGITAL_IN2', None, None),
+    (3,  {}, "31e0000.i2c/i2c-8/8-0038", 44, 44, 'DIGITAL_IN3', 'DIGITAL_IN3', None, None),
+    (4,  {}, "31e0000.i2c/i2c-8/8-0038", 45, 45, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+    (5,  {}, "31e0000.i2c/i2c-8/8-0038", 46, 46, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+    (6,  {}, "31e0000.i2c/i2c-8/8-0038", 47, 47, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+    (7,  {}, "31e0000.i2c/i2c-8/8-0038", 48, 48, 'DIGITAL_OUT3', 'DIGITAL_OUT3', None, None),
 ]
 compats_nx = (
     'nvidia,p3509-0000+p3668-0000',
@@ -390,7 +399,7 @@ WARNING: and in fact is unlikely to work correctly.
         warn_if_not_carrier_board('3449', '3542')
     elif matches(compats_nx):
         model = JETSON_NX
-        warn_if_not_carrier_board('3509', '3449')
+        warn_if_not_carrier_board('3509', '3449', '3668')
     else:
         raise Exception('Could not determine Jetson model')
 
