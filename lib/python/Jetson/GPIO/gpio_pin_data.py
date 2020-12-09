@@ -243,7 +243,16 @@ JETSON_NANO_PIN_DEFS = [
     (51, {}, "6000d000.gpio", 36, 16, 'UART1_CTS', 'UART2_CTS', None, None),
     (12, {}, "6000d000.gpio", 37, 26, 'SPI1_MOSI', 'SPI2_MOSI', None, None),
     (77, {}, "6000d000.gpio", 38, 20, 'I2S0_DIN', 'DAP4_DIN', None, None),
-    (78, {}, "6000d000.gpio", 40, 21, 'I2S0_DOUT', 'DAP4_DOUT', None, None)
+    (78, {}, "6000d000.gpio", 40, 21, 'I2S0_DOUT', 'DAP4_DOUT', None, None),
+# DSBOX-N2 IIO Pins
+    (0,  {}, "7000c400.i2c/i2c-1/1-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+    (1,  {}, "7000c400.i2c/i2c-1/1-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+    (2,  {}, "7000c400.i2c/i2c-1/1-0038", 43, 43, 'DIGITAL_IN2', 'DIGITAL_IN2', None, None),
+    (3,  {}, "7000c400.i2c/i2c-1/1-0038", 44, 44, 'DIGITAL_IN3', 'DIGITAL_IN3', None, None),
+    (4,  {}, "7000c400.i2c/i2c-1/1-0038", 45, 45, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+    (5,  {}, "7000c400.i2c/i2c-1/1-0038", 46, 46, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+    (6,  {}, "7000c400.i2c/i2c-1/1-0038", 47, 47, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+    (7,  {}, "7000c400.i2c/i2c-1/1-0038", 48, 48, 'DIGITAL_OUT3', 'DIGITAL_OUT3', None, None),
 ]
 compats_nano = (
     'nvidia,p3450-0000',
@@ -396,7 +405,7 @@ WARNING: and in fact is unlikely to work correctly.
         # Revision is an ordered string, not a decimal integer
         if revision < "200":
             raise Exception('Jetson Nano module revision must be A02 or later')
-        warn_if_not_carrier_board('3449', '3542')
+        warn_if_not_carrier_board('3449', '3542', '3448')
     elif matches(compats_nx):
         model = JETSON_NX
         warn_if_not_carrier_board('3509', '3449', '3668')
