@@ -102,12 +102,9 @@ JETSON_NX_PIN_DEFS = [
 # DSBOX-NX2 IIO Pins
     (0,  {}, "31e0000.i2c/i2c-8/8-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
     (1,  {}, "31e0000.i2c/i2c-8/8-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (2,  {}, "31e0000.i2c/i2c-8/8-0038", 43, 43, 'DIGITAL_IN2', 'DIGITAL_IN2', None, None),
-    (3,  {}, "31e0000.i2c/i2c-8/8-0038", 44, 44, 'DIGITAL_IN3', 'DIGITAL_IN3', None, None),
-    (4,  {}, "31e0000.i2c/i2c-8/8-0038", 45, 45, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (5,  {}, "31e0000.i2c/i2c-8/8-0038", 46, 46, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (6,  {}, "31e0000.i2c/i2c-8/8-0038", 47, 47, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
-    (7,  {}, "31e0000.i2c/i2c-8/8-0038", 48, 48, 'DIGITAL_OUT3', 'DIGITAL_OUT3', None, None),
+    (4,  {}, "31e0000.i2c/i2c-8/8-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+    (5,  {}, "31e0000.i2c/i2c-8/8-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+    (6,  {}, "31e0000.i2c/i2c-8/8-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
 ]
 compats_nx = (
     'nvidia,p3509-0000+p3668-0000',
@@ -247,12 +244,9 @@ JETSON_NANO_PIN_DEFS = [
 # DSBOX-N2 IIO Pins
     (0,  {}, "7000c400.i2c/i2c-1/1-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
     (1,  {}, "7000c400.i2c/i2c-1/1-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (2,  {}, "7000c400.i2c/i2c-1/1-0038", 43, 43, 'DIGITAL_IN2', 'DIGITAL_IN2', None, None),
-    (3,  {}, "7000c400.i2c/i2c-1/1-0038", 44, 44, 'DIGITAL_IN3', 'DIGITAL_IN3', None, None),
-    (4,  {}, "7000c400.i2c/i2c-1/1-0038", 45, 45, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (5,  {}, "7000c400.i2c/i2c-1/1-0038", 46, 46, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (6,  {}, "7000c400.i2c/i2c-1/1-0038", 47, 47, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
-    (7,  {}, "7000c400.i2c/i2c-1/1-0038", 48, 48, 'DIGITAL_OUT3', 'DIGITAL_OUT3', None, None),
+    (4,  {}, "7000c400.i2c/i2c-1/1-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+    (5,  {}, "7000c400.i2c/i2c-1/1-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+    (6,  {}, "7000c400.i2c/i2c-1/1-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
 ]
 compats_nano = (
     'nvidia,p3450-0000',
