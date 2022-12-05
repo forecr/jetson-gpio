@@ -193,6 +193,7 @@ JETSON_TX2_NX_PIN_DEFS = [
     ({192: 58, 140:  49}, {140:  'PH.02'}, "2200000.gpio", 19, 10, 'SPI0_MOSI', 'GPIO_WAN7', None, None),
     ({192: 57, 140: 48}, {140:  'PH.01'}, "2200000.gpio", 21, 9, 'SPI0_MISO', 'GPIO_WAN6', None, None),
     ({64: 18, 47: 13}, {47:  'PV.02'}, "c2f0000.gpio", 22, 25, 'SPI1_MISO', 'GPIO_SEN2', None, None),
+# SPI1_CLK is SPI0_CLK (PH.00) in pinmux
     ({192: 56, 140:  47}, {140:  'PH.00'}, "2200000.gpio", 23, 11, 'SPI1_CLK', 'GPIO_WAN5', None, None),
     ({192: 59, 140: 50}, {140:  'PH.03'}, "2200000.gpio", 24, 8, 'SPI0_CS0', 'GPIO_WAN8', None, None),
     ({192: 163, 140: 130}, {140:  'PY.03'}, "2200000.gpio", 26, 7, 'SPI0_CS1', 'GPIO_MDM4', None, None),
@@ -211,6 +212,12 @@ JETSON_TX2_NX_PIN_DEFS = [
     (4,  {}, "c240000.i2c/i2c-1/1-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
     (5,  {}, "c240000.i2c/i2c-1/1-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
     (6,  {}, "c240000.i2c/i2c-1/1-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+    ({192: 21, 140: 19}, {140:  'PC.05'}, "2200000.gpio", 46, 46, 'I2C0_SCL', 'I2C0_SCL', None, None),
+    ({192: 22, 140: 20}, {140:  'PC.06'}, "2200000.gpio", 47, 47, 'I2C0_SDA', 'I2C0_SDA', None, None),
+    ({192: 152, 140: 119}, {140:  'PX.00'}, "2200000.gpio", 48, 48, 'UART0_TX', 'UART0_TX', None, None),
+    ({192: 153, 140: 120}, {140:  'PX.01'}, "2200000.gpio", 49, 49, 'UART0_RX', 'UART0_RX', None, None),
+    ({192: 154, 140: 121}, {140:  'PX.02'}, "2200000.gpio", 50, 50, 'UART0_RTS', 'UART0_RTS', None, None),
+    ({192: 155, 140: 122}, {140:  'PX.03'}, "2200000.gpio", 51, 51, 'UART0_CTS', 'UART0_CTS', None, None),
 ]
 compats_tx2_nx = (
     'nvidia,p3509-0000+p3636-0001',
