@@ -28,6 +28,7 @@ JETSON_TX2 = 'JETSON_TX2'
 JETSON_TX1 = 'JETSON_TX1'
 JETSON_NANO = 'JETSON_NANO'
 JETSON_TX2_NX='JETSON_TX2_NX'
+JETSON_ORIN='JETSON_ORIN'
 
 # These arrays contain tuples of all the relevant GPIO data for each Jetson
 # Platform. The fields are:
@@ -45,6 +46,37 @@ JETSON_TX2_NX='JETSON_TX2_NX'
 # - PWM ID within PWM chip
 # The values are used to generate dictionaries that map the corresponding pin
 # mode numbers to the Linux GPIO pin number and GPIO chip directory
+
+JETSON_ORIN_PIN_DEFS = [
+    ({164: 106}, {164:  'PQ.06'}, "2200000.gpio", 7, 4, 'MCLK05', 'GP66', None, None),
+    # Output-only (due to base board)
+    ({164: 112}, {164:  'PR.04'}, "2200000.gpio", 11, 17, 'UART1_RTS', 'GP72_UART1_RTS_N', None, None),
+    ({164:  50}, {164:  'PH.07'}, "2200000.gpio", 12, 18, 'I2S2_CLK', 'GP122', None, None),
+    ({164:  108}, {164:  'PR.00'}, "2200000.gpio", 13, 27, 'PWM01', 'GP68', None, None),
+    ({164:  85}, {164:  'PN.01'}, "2200000.gpio", 15, 22, 'GPIO27', 'GP88_PWM1', '3280000.pwm', 0),
+    ({32:   9}, { 32: 'PBB.01'}, "c2f0000.gpio", 16, 23, 'GPIO08', 'GP26', None, None),
+    ({164:  43}, {164:  'PH.00'}, "2200000.gpio", 18, 24, 'GPIO35', 'GP115', '32c0000.pwm', 0),
+    ({164: 135}, {164:  'PZ.05'}, "2200000.gpio", 19, 10, 'SPI1_MOSI', 'GP49_SPI1_MOSI', None, None),
+    ({164: 134}, {164:  'PZ.04'}, "2200000.gpio", 21, 9, 'SPI1_MISO', 'GP48_SPI1_MISO', None, None),
+    ({164: 96}, {164:  'PP.04'}, "2200000.gpio", 22, 25, 'GPIO17', 'GP56', None, None),
+    ({164: 133}, {164:  'PZ.03'}, "2200000.gpio", 23, 11, 'SPI1_CLK', 'GP47_SPI1_CLK', None, None),
+    ({164: 136}, {164:  'PZ.06'}, "2200000.gpio", 24, 8, 'SPI1_CS0_N', 'GP50_SPI1_CS0_N', None, None),
+    ({164: 137}, {164:  'PZ.07'}, "2200000.gpio", 26, 7, 'SPI1_CS1_N', 'GP51_SPI1_CS1_N', None, None),
+    ({ 32:   1}, { 32: 'PAA.01'}, "c2f0000.gpio", 29, 5, 'CAN0_DIN', 'GP18_CAN0_DIN', None, None),
+    ({ 32:   0}, { 32: 'PAA.00'}, "c2f0000.gpio", 31, 6, 'CAN0_DOUT', 'GP17_CAN0_DOUT', None, None),
+    ({ 32:  8}, { 32: 'PBB.00'}, "c2f0000.gpio", 32, 12, 'GPIO09', 'GP25', None, None),
+    ({ 32:   2}, { 32: 'PAA.02'}, "c2f0000.gpio", 33, 13, 'CAN1_DOUT', 'GP19_CAN1_DOUT', None, None),
+    ({164: 53}, {164:  'PI.02'}, "2200000.gpio", 35, 19, 'I2S2_FS', 'GP125', None, None),
+    ({164: 113}, {164:  'PR.05'}, "2200000.gpio", 36, 16, 'UART1_CTS', 'GP73_UART1_CTS_N', None, None),
+    ({ 32:   3}, { 32: 'PAA.03'}, "c2f0000.gpio", 37, 26, 'CAN1_DIN', 'GP20_CAN1_DIN', None, None),
+    ({164:  52}, {164:  'PI.01'}, "2200000.gpio", 38, 20, 'I2S2_DIN', 'GP124', None, None),
+    ({164:  51}, {164:  'PI.00'}, "2200000.gpio", 40, 21, 'I2S2_DOUT', 'GP123', None, None)
+]
+
+compats_jetson_orins = (
+    'nvidia,p3737-0000+p3701-0000',
+    'nvidia,p3737-0000+p3701-0004',
+)
 
 CLARA_AGX_XAVIER_PIN_DEFS = [
     ({224: 134, 169: 106}, {169:  'PQ.06'}, "2200000.gpio", 7, 4, 'MCLK05', 'SOC_GPIO42', None, None),
@@ -82,7 +114,7 @@ JETSON_NX_PIN_DEFS = [
     ({224: 140, 169: 112}, {169:  'PR.04'}, "2200000.gpio", 11, 17, 'UART1_RTS', 'UART1_RTS', None, None),
     ({224: 157, 169: 127}, {169:  'PT.05'}, "2200000.gpio", 12, 18, 'I2S0_SCLK', 'DAP5_SCLK', None, None),
     ({224: 192, 169: 149}, {169:  'PY.00'}, "2200000.gpio", 13, 27, 'SPI1_SCK', 'SPI3_SCK', None, None),
-    ({ 40:  20,  30:  16}, { 30: 'PCC.04'}, "c2f0000.gpio", 15, 22, 'GPIO12', 'TOUCH_CLK', None, None),
+    ({ 40:  20,  30:  16}, { 30: 'PCC.04'}, "c2f0000.gpio", 15, 22, 'GPIO12', 'TOUCH_CLK', "c340000.pwm", 0),
     ({224: 196, 169: 153}, {169:  'PY.04'}, "2200000.gpio", 16, 23, 'SPI1_CS1', 'SPI3_CS1_N', None, None),
     ({224: 195, 169: 152}, {169:  'PY.03'}, "2200000.gpio", 18, 24, 'SPI1_CS0', 'SPI3_CS0_N', None, None),
     ({224: 205, 169: 162}, {169:  'PZ.05'}, "2200000.gpio", 19, 10, 'SPI0_MOSI', 'SPI1_MOSI', None, None),
@@ -112,6 +144,7 @@ compats_nx = (
     'nvidia,p3509-0000+p3668-0001',
     'nvidia,p3449-0000+p3668-0000',
     'nvidia,p3449-0000+p3668-0001',
+    'nvidia,p3449-0000+p3668-0003',
 )
 
 JETSON_XAVIER_PIN_DEFS = [
@@ -292,6 +325,17 @@ compats_nano = (
 )
 
 jetson_gpio_data = {
+    JETSON_ORIN: (
+        JETSON_ORIN_PIN_DEFS,
+        {
+            'P1_REVISION': 1,
+            'RAM': '32768M',
+            'REVISION': 'Unknown',
+            'TYPE': 'JETSON_ORIN',
+            'MANUFACTURER': 'NVIDIA',
+            'PROCESSOR': 'A78AE'
+        }
+    ),
     CLARA_AGX_XAVIER: (
         CLARA_AGX_XAVIER_PIN_DEFS,
         {
@@ -307,7 +351,7 @@ jetson_gpio_data = {
         JETSON_NX_PIN_DEFS,
         {
             'P1_REVISION': 1,
-            'RAM': '16384M',
+            'RAM': '16384M, 8192M',
             'REVISION': 'Unknown',
             'TYPE': 'Jetson NX',
             'MANUFACTURER': 'NVIDIA',
@@ -318,7 +362,7 @@ jetson_gpio_data = {
         JETSON_XAVIER_PIN_DEFS,
         {
             'P1_REVISION': 1,
-            'RAM': '16384M',
+            'RAM': '65536M, 32768M, 16384M, 8192M',
             'REVISION': 'Unknown',
             'TYPE': 'Jetson Xavier',
             'MANUFACTURER': 'NVIDIA',
@@ -340,7 +384,7 @@ jetson_gpio_data = {
         JETSON_TX2_PIN_DEFS,
         {
             'P1_REVISION': 1,
-            'RAM': '8192M',
+            'RAM': '8192M, 4096M',
             'REVISION': 'Unknown',
             'TYPE': 'Jetson TX2',
             'MANUFACTURER': 'NVIDIA',
@@ -362,7 +406,7 @@ jetson_gpio_data = {
         JETSON_NANO_PIN_DEFS,
         {
             'P1_REVISION': 1,
-            'RAM': '4096M',
+            'RAM': '4096M, 2048M',
             'REVISION': 'Unknown',
             'TYPE': 'Jetson Nano',
             'MANUFACTURER': 'NVIDIA',
@@ -389,6 +433,7 @@ ids_warned = False
 def get_data():
     compatible_path = '/proc/device-tree/compatible'
     ids_path = '/proc/device-tree/chosen/plugin-manager/ids'
+    ids_path_k510 = '/proc/device-tree/chosen/ids'
 
     with open(compatible_path, 'r') as f:
         compatibles = f.read().split('\x00')
@@ -398,7 +443,17 @@ def get_data():
 
     def find_pmgr_board(prefix):
         global ids_warned
-        if not os.path.exists(ids_path):
+        if os.path.exists(ids_path):
+            for f in os.listdir(ids_path):
+                if f.startswith(prefix):
+                    return f
+        elif os.path.exists(ids_path_k510):
+            with open(ids_path_k510, 'r') as f:
+                ids = f.read()
+                for s in ids.split():
+                    if s.startswith(prefix):
+                        return s
+        else:
             if not ids_warned:
                 ids_warned = True
                 msg = """\
@@ -407,9 +462,9 @@ WARNING: Cannot determine whether the expected Jetson board is present.
 """
                 sys.stderr.write(msg)
             return None
-        for f in os.listdir(ids_path):
-            if f.startswith(prefix):
-                return f
+
+
+
         return None
 
     def warn_if_not_carrier_board(*carrier_boards):
@@ -437,7 +492,7 @@ WARNING: and in fact is unlikely to work correctly.
         warn_if_not_carrier_board('3900')
     elif matches(compats_tx2_nx):
         model = JETSON_TX2_NX
-        warn_if_not_carrier_board('3509', '3636')
+        warn_if_not_carrier_board('3509')
     elif matches(compats_xavier):
         model = JETSON_XAVIER
         warn_if_not_carrier_board('2822')
@@ -450,10 +505,13 @@ WARNING: and in fact is unlikely to work correctly.
         # Revision is an ordered string, not a decimal integer
         if revision < "200":
             raise Exception('Jetson Nano module revision must be A02 or later')
-        warn_if_not_carrier_board('3449', '3542', '3448')
+        warn_if_not_carrier_board('3449', '3542')
     elif matches(compats_nx):
         model = JETSON_NX
-        warn_if_not_carrier_board('3509', '3449', '3668')
+        warn_if_not_carrier_board('3509', '3449')
+    elif matches(compats_jetson_orins):
+        model = JETSON_ORIN
+        warn_if_not_carrier_board('3737','0000')
     else:
         raise Exception('Could not determine Jetson model')
 
@@ -544,3 +602,4 @@ WARNING: and in fact is unlikely to work correctly.
     }
 
     return model, jetson_info, channel_data
+

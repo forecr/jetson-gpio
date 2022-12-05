@@ -384,6 +384,11 @@ def setup(channels, direction, pull_up_down=_Default(PUD_OFF), initial=None):
                     "This channel is already in use, continuing anyway. "
                     "Use GPIO.setwarnings(False) to disable warnings",
                     RuntimeWarning)
+    
+    # cleanup if the channel is already setup
+    for ch_info in ch_infos:
+        if ch_info.channel in _channel_configuration:
+            _cleanup_one(ch_info)
 
     if direction == OUT:
         initial = _make_iterable(initial, len(ch_infos))
@@ -672,6 +677,9 @@ class PWM(object):
         if freq_change:
             self._frequency_hz = frequency_hz
             self._period_ns = int(1000000000.0 / frequency_hz)
+            # Reset duty cycle period incase the previous duty
+            # cycle is higher than the period
+            _set_pwm_duty_cycle(self._ch_info, 0)
             _set_pwm_period(self._ch_info, self._period_ns)
 
         self._duty_cycle_percent = duty_cycle_percent
