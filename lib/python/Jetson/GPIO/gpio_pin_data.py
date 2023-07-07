@@ -1,4 +1,4 @@
-# Copyright (c) 2018-2020, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2018-2022, NVIDIA CORPORATION. All rights reserved.
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
 # to deal in the Software without restriction, including without limitation
@@ -29,6 +29,9 @@ JETSON_TX1 = 'JETSON_TX1'
 JETSON_NANO = 'JETSON_NANO'
 JETSON_TX2_NX='JETSON_TX2_NX'
 JETSON_ORIN='JETSON_ORIN'
+JETSON_ORIN_NX='JETSON_ORIN_NX'
+
+JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON_XAVIER, JETSON_NANO, JETSON_NX, JETSON_ORIN, JETSON_ORIN_NX]
 
 # These arrays contain tuples of all the relevant GPIO data for each Jetson
 # Platform. The fields are:
@@ -46,6 +49,35 @@ JETSON_ORIN='JETSON_ORIN'
 # - PWM ID within PWM chip
 # The values are used to generate dictionaries that map the corresponding pin
 # mode numbers to the Linux GPIO pin number and GPIO chip directory
+
+JETSON_ORIN_NX_PIN_DEFS = [
+    ({164: 144}, {164:  'PAC.06'}, "2200000.gpio", 7, 4, 'GPIO09', 'GP167', None, None),
+    ({164: 112}, {164:  'PR.04'}, "2200000.gpio", 11, 17, 'UART1_RTS', 'GP72_UART1_RTS_N', None, None),
+    ({164:  50}, {164:  'PH.07'}, "2200000.gpio", 12, 18, 'I2S0_SCLK', 'GP122', None, None),
+    ({164:  122}, {164:  'PY.00'}, "2200000.gpio", 13, 27, 'SPI1_SCK', 'GP36_SPI3_CLK', None, None),
+    ({164:  85}, {164:  'PN.01'}, "2200000.gpio", 15, 22, 'GPIO12', 'GP88_PWM1', '3280000.pwm', 0),
+    ({164:   126}, { 164: 'PY.04'}, "2200000.gpio", 16, 23, 'SPI1_CS1', 'GP40_SPI3_CS1_N', None, None),
+    ({164:  125}, {164:  'PY.03'}, "2200000.gpio", 18, 24, 'SPI1_CS0', 'GP39_SPI3_CS0_N', None, None),
+    ({164: 135}, {164:  'PZ.05'}, "2200000.gpio", 19, 10, 'SPI0_MOSI', 'GP49_SPI1_MOSI', None, None),
+    ({164: 134}, {164:  'PZ.04'}, "2200000.gpio", 21, 9, 'SPI0_MISO', 'GP48_SPI1_MISO', None, None),
+    ({164: 123}, {164:  'PY.01'}, "2200000.gpio", 22, 25, 'SPI1_MISO', 'GP37_SPI3_MISO', None, None),
+    ({164: 133}, {164:  'PZ.03'}, "2200000.gpio", 23, 11, 'SPI0_SCK', 'GP47_SPI1_CLK', None, None),
+    ({164: 136}, {164:  'PZ.06'}, "2200000.gpio", 24, 8, 'SPI0_CS0', 'GP50_SPI1_CS0_N', None, None),
+    ({164: 137}, {164:  'PZ.07'}, "2200000.gpio", 26, 7, 'SPI0_CS1', 'GP51_SPI1_CS1_N', None, None),
+    ({ 164:   105}, { 164: 'PQ.05'}, "2200000.gpio", 29, 5, 'GPIO01', 'GP65', None, None),
+    ({ 164:   106}, { 164: 'PQ.06'}, "2200000.gpio", 31, 6, 'GPIO11', 'GP66', None, None),
+    ({ 164:  41}, { 164: 'PG.06'}, "2200000.gpio", 32, 12, 'GPIO07', 'GP113_PWM7', None, None),
+    ({164:  43}, {164:  'PH.00'}, "2200000.gpio", 33, 13, 'GPIO13', 'GP115', '32c0000.pwm', 0),
+    ({164: 53}, {164:  'PI.02'}, "2200000.gpio", 35, 19, 'I2S0_FS', 'GP125', None, None),
+    ({164: 113}, {164:  'PR.05'}, "2200000.gpio", 36, 16, 'UART1_CTS', 'GP73_UART1_CTS_N', None, None),
+    ({ 164:   124}, { 164: 'PY.02'}, "2200000.gpio", 37, 26, 'SPI1_MOSI', 'GP38_SPI3_MOSI', None, None),
+    ({164:  52}, {164:  'PI.01'}, "2200000.gpio", 38, 20, 'I2S0_SDIN', 'GP124', None, None),
+    ({164:  51}, {164:  'PI.00'}, "2200000.gpio", 40, 21, 'I2S0_SDOUT', 'GP123', None, None)
+]
+
+compats_jetson_orins_nx = (
+    "nvidia,p3509-0000+p3767-0000",
+)
 
 JETSON_ORIN_PIN_DEFS = [
     ({164: 106}, {164:  'PQ.06'}, "2200000.gpio", 7, 4, 'MCLK05', 'GP66', None, None),
@@ -332,11 +364,22 @@ compats_nano = (
 )
 
 jetson_gpio_data = {
+    JETSON_ORIN_NX: (
+        JETSON_ORIN_NX_PIN_DEFS,
+        {
+            'P1_REVISION': 1,
+            'RAM': '32768M, 65536M',
+            'REVISION': 'Unknown',
+            'TYPE': 'JETSON_ORIN_NX',
+            'MANUFACTURER': 'NVIDIA',
+            'PROCESSOR': 'A78AE'
+        }
+    ),
     JETSON_ORIN: (
         JETSON_ORIN_PIN_DEFS,
         {
             'P1_REVISION': 1,
-            'RAM': '32768M',
+            'RAM': '32768M, 65536M',
             'REVISION': 'Unknown',
             'TYPE': 'JETSON_ORIN',
             'MANUFACTURER': 'NVIDIA',
@@ -436,91 +479,114 @@ class ChannelInfo(object):
 
 ids_warned = False
 
-
-def get_data():
-    compatible_path = '/proc/device-tree/compatible'
+def find_pmgr_board(prefix):
+    global ids_warned
     ids_path = '/proc/device-tree/chosen/plugin-manager/ids'
     ids_path_k510 = '/proc/device-tree/chosen/ids'
 
-    with open(compatible_path, 'r') as f:
-        compatibles = f.read().split('\x00')
-
-    def matches(vals):
-        return any(v in compatibles for v in vals)
-
-    def find_pmgr_board(prefix):
-        global ids_warned
-        if os.path.exists(ids_path):
-            for f in os.listdir(ids_path):
-                if f.startswith(prefix):
-                    return f
-        elif os.path.exists(ids_path_k510):
-            with open(ids_path_k510, 'r') as f:
-                ids = f.read()
-                for s in ids.split():
-                    if s.startswith(prefix):
-                        return s
-        else:
-            if not ids_warned:
-                ids_warned = True
-                msg = """\
+    if os.path.exists(ids_path):
+        for f in os.listdir(ids_path):
+            if f.startswith(prefix):
+                return f
+    elif os.path.exists(ids_path_k510):
+        with open(ids_path_k510, 'r') as f:
+            ids = f.read()
+            for s in ids.split():
+                if s.startswith(prefix):
+                    return s
+    else:
+        if not ids_warned:
+            ids_warned = True
+            msg = """\
 WARNING: Plugin manager information missing from device tree.
 WARNING: Cannot determine whether the expected Jetson board is present.
 """
-                sys.stderr.write(msg)
-            return None
+            sys.stderr.write(msg)
+
+    return None
 
 
-
-        return None
-
-    def warn_if_not_carrier_board(*carrier_boards):
-        found = False
-        for b in carrier_boards:
-            found = find_pmgr_board(b + '-')
-            if found:
-                break
-        if not found:
-            msg = """\
+def warn_if_not_carrier_board(*carrier_boards):
+    found = False
+    for b in carrier_boards:
+        found = find_pmgr_board(b + '-')
+        if found:
+            break
+    if not found:
+        msg = """\
 WARNING: Carrier board is not from a Jetson Developer Kit.
 WARNNIG: Jetson.GPIO library has not been verified with this carrier board,
 WARNING: and in fact is unlikely to work correctly.
 """
+        sys.stderr.write(msg)
+
+
+def get_compatibles(compatible_path):
+    with open(compatible_path, 'r') as f:
+        compatibles = f.read().split('\x00')
+    return compatibles
+
+
+def get_model():
+    compatible_path = '/proc/device-tree/compatible'
+
+    # get model info from compatible_path
+    if os.path.exists(compatible_path):
+        compatibles = get_compatibles(compatible_path)
+
+        def matches(vals):
+            return any(v in compatibles for v in vals)
+
+        if matches(compats_tx1):
+            warn_if_not_carrier_board('2597')
+            return JETSON_TX1
+        elif matches(compats_tx2):
+            warn_if_not_carrier_board('2597')
+            return JETSON_TX2
+        elif matches(compats_clara_agx_xavier):
+            warn_if_not_carrier_board('3900')
+            return CLARA_AGX_XAVIER
+        elif matches(compats_tx2_nx):
+            warn_if_not_carrier_board('3509')
+            return JETSON_TX2_NX
+        elif matches(compats_xavier):
+            warn_if_not_carrier_board('2822')
+            return JETSON_XAVIER
+        elif matches(compats_nano):
+            module_id = find_pmgr_board('3448')
+            if not module_id:
+                raise Exception('Could not determine Jetson Nano module revision')
+            revision = module_id.split('-')[-1]
+            # Revision is an ordered string, not a decimal integer
+            if revision < "200":
+                raise Exception('Jetson Nano module revision must be A02 or later')
+            warn_if_not_carrier_board('3449', '3542')
+            return JETSON_NANO
+        elif matches(compats_nx):
+            warn_if_not_carrier_board('3509', '3449')
+            return JETSON_NX
+        elif matches(compats_jetson_orins):
+            warn_if_not_carrier_board('3737')
+            return JETSON_ORIN
+        elif matches(compats_jetson_orins_nx):
+            warn_if_not_carrier_board('3509')
+            return JETSON_ORIN_NX
+
+    # get model info from the environment variables for docker containers
+    model_name = os.environ.get("JETSON_MODEL_NAME")
+    if model_name is not None:
+        model_name = model_name.strip()
+        if model_name in JETSON_MODELS:
+            return model_name
+        else:
+            msg = f"Environment variable 'JETSON_MODEL_NAME={model_name}' is invalid."
             sys.stderr.write(msg)
 
-    if matches(compats_tx1):
-        model = JETSON_TX1
-        warn_if_not_carrier_board('2597')
-    elif matches(compats_tx2):
-        model = JETSON_TX2
-        warn_if_not_carrier_board('2597')
-    elif matches(compats_clara_agx_xavier):
-        model = CLARA_AGX_XAVIER
-        warn_if_not_carrier_board('3900')
-    elif matches(compats_tx2_nx):
-        model = JETSON_TX2_NX
-        warn_if_not_carrier_board('3509')
-    elif matches(compats_xavier):
-        model = JETSON_XAVIER
-        warn_if_not_carrier_board('2822')
-    elif matches(compats_nano):
-        model = JETSON_NANO
-        module_id = find_pmgr_board('3448')
-        if not module_id:
-            raise Exception('Could not determine Jetson Nano module revision')
-        revision = module_id.split('-')[-1]
-        # Revision is an ordered string, not a decimal integer
-        if revision < "200":
-            raise Exception('Jetson Nano module revision must be A02 or later')
-        warn_if_not_carrier_board('3449', '3542')
-    elif matches(compats_nx):
-        model = JETSON_NX
-        warn_if_not_carrier_board('3509', '3449')
-    elif matches(compats_jetson_orins):
-        model = JETSON_ORIN
-        warn_if_not_carrier_board('3737','0000')
-    else:
-        raise Exception('Could not determine Jetson model')
+    raise Exception('Could not determine Jetson model')
+
+
+def get_data():
+    model = get_model()
 
     pin_defs, jetson_info = jetson_gpio_data[model]
     gpio_chip_dirs = {}

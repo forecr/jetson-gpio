@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-
-# Copyright (c) 2019-2022, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2019, NVIDIA CORPORATION. All rights reserved.
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
 # to deal in the Software without restriction, including without limitation
@@ -19,26 +17,8 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
-import RPi.GPIO as GPIO
-import time
+FROM nvcr.io/nvidia/l4t-base:r32.4.3 AS base
 
-pin = 31
-
-def on_falling(channel):
-    print("Callback.")
-
-def main():
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(pin, GPIO.IN)
-
-    GPIO.add_event_detect(pin, GPIO.FALLING, callback=on_falling, bouncetime=300)
-    print("Starting demo now! Press CTRL+C to exit")
-    try:
-        while True:
-            print("Main loop...")
-            time.sleep(5)
-    finally:
-        GPIO.cleanup()
-
-if __name__ == '__main__':
-    main()
+RUN apt-get update 
+RUN apt-get install -y python3-pip
+RUN pip3 install Jetson.GPIO
