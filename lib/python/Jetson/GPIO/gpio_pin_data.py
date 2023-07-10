@@ -256,7 +256,13 @@ JETSON_TX2_NX_PIN_DEFS = [
     (29, 'PW.05', "tegra-gpio-aon", 36, 16, 'UART1_CTS', 'UART3_CTS', None, None),
     (19, 'PV.03', "tegra-gpio-aon", 37, 26, 'SPI1_MOSI', 'GPIO_SEN3', None, None),
     (74, 'PJ.02', "tegra-gpio", 38, 20, 'I2S0_DIN', 'DAP1_DIN', None, None),
-    (73, 'PJ.01', "tegra-gpio", 40, 21, 'I2S0_DOUT', 'DAP1_DOUT', None, None)
+    (73, 'PJ.01', "tegra-gpio", 40, 21, 'I2S0_DOUT', 'DAP1_DOUT', None, None),
+# DSBOX-TX2NX IIO Pins
+    (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+    (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+    (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+    (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+    (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
 ]
 compats_tx2_nx = (
     'nvidia,p3509-0000+p3636-0001',
