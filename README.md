@@ -11,6 +11,8 @@ This document walks through what is contained in The Jetson GPIO library
 package, how to configure the system and run the provided sample applications,
 and the library API.
 
+**Attention:** If you will use this library in JetPack-5.x based system, please switch to the [main](https://github.com/mistelektronik/jetson-gpio/tree/main) branch.
+
 # Package Components
 
 In addition to this document, the Jetson GPIO library package contains the
