@@ -11,6 +11,8 @@ This document walks through what is contained in The Jetson GPIO library
 package, how to configure the system and run the provided sample applications,
 and the library API.
 
+**Attention:** If you will use this library in JetPack-4.x based system, please switch to the [v2.0.21](https://github.com/mistelektronik/jetson-gpio/tree/v2.0.21) branch.
+
 # Package Components
 
 In addition to this document, the Jetson GPIO library package contains the
@@ -409,12 +411,11 @@ sudo docker image build -f samples/docker/Dockerfile -t testimg .
 
 ## Running the container
 ### Basic options 
-You should map `/sys/devices`, `/sys/class/gpio` into the container to access to the GPIO pins.
+You should map `/dev` into the container to access to the GPIO pins.
 So you need to add these options to `docker container run` command.
 
 ```shell
--v /sys/devices/:/sys/devices/ \
--v /sys/class/gpio:/sys/class/gpi
+-v /dev:/dev \
 ```
 
 and if you want to use GPU from the container you also need to add these options:
@@ -434,8 +435,7 @@ sudo docker container run -it --rm \
 --privileged \
 -v /proc/device-tree/compatible:/proc/device-tree/compatible \
 -v /proc/device-tree/chosen:/proc/device-tree/chosen \
--v /sys/devices/:/sys/devices/ \
--v /sys/class/gpio:/sys/class/gpio \
+-v /dev:/dev \
 testimg /bin/bash
 ```
 
@@ -459,8 +459,7 @@ The following example will run `/bin/bash` from the container in non-privilleged
 ```shell
 sudo docker container run -it --rm \
 --runtime=nvidia --gpus all \
--v /sys/devices/:/sys/devices/ \
--v /sys/class/gpio:/sys/class/gpio \
+-v /dev:/dev \
 -e JETSON_MODEL_NAME=[PUT_YOUR_JETSON_MODEL_NAME_HERE] \
 testimg /bin/bash
 ```
