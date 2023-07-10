@@ -356,7 +356,13 @@ JETSON_NANO_PIN_DEFS = [
     (51,  '', "tegra-gpio", 36, 16, 'UART1_CTS', 'UART2_CTS', None, None),
     (12,  '', "tegra-gpio", 37, 26, 'SPI1_MOSI', 'SPI2_MOSI', None, None),
     (77,  '', "tegra-gpio", 38, 20, 'I2S0_DIN', 'DAP4_DIN', None, None),
-    (78,  '', "tegra-gpio", 40, 21, 'I2S0_DOUT', 'DAP4_DOUT', None, None)
+    (78,  '', "tegra-gpio", 40, 21, 'I2S0_DOUT', 'DAP4_DOUT', None, None),
+# DSBOX-N2 IIO Pins
+    (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+    (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+    (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+    (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+    (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
 ]
 compats_nano = (
     'nvidia,p3450-0000',
