@@ -66,7 +66,7 @@ JETSON_ORIN_NX_PIN_DEFS = [
     (137, 'PZ.07', "tegra234-gpio", 26, 7, 'SPI0_CS1', 'GP51_SPI1_CS1_N', None, None),
     (105, 'PQ.05', "tegra234-gpio", 29, 5, 'GPIO01', 'GP65', None, None),
     (106, 'PQ.06', "tegra234-gpio", 31, 6, 'GPIO11', 'GP66', None, None),
-    (41, 'PG.06', "tegra234-gpio", 32, 12, 'GPIO07', 'GP113_PWM7', None, None),
+    (41, 'PG.06', "tegra234-gpio", 32, 12, 'GPIO07', 'GP113_PWM7', '32e0000.pwm', 0),
     (43, 'PH.00', "tegra234-gpio", 33, 13, 'GPIO13', 'GP115', '32c0000.pwm', 0),
     (53, 'PI.02', "tegra234-gpio", 35, 19, 'I2S0_FS', 'GP125', None, None),
     (113, 'PR.05', "tegra234-gpio", 36, 16, 'UART1_CTS', 'GP73_UART1_CTS_N', None, None),
@@ -497,6 +497,15 @@ jetson_gpio_data = {
 
 
 class ChannelInfo(object):
+    # @channel the pin number in specified mode (board or bcm)
+    # @chip_fd the file descriptor of the chip 
+    # @line_handle the file descriptor of the line
+    # @line_offset Linux GPIO pin number (line offset inside chip, not global)
+    # @direction the direction of a pin is configured (in or out)
+    # @edge rising and/or falling edge being monitored
+    # @consumer consumer label
+    # @gpio_name Linux exported GPIO name
+    # @gpio_chip GPIO chip name/instance
     def __init__(self, channel, line_offset, gpio_name, gpio_chip, pwm_chip_dir, pwm_id):
         self.channel = channel
         self.chip_fd = None
@@ -621,7 +630,10 @@ def get_model():
 
     raise Exception('Could not determine Jetson model')
 
-
+# @brief Retrieve all the data before connecting to any ports
+# @param[out] model: model number of an Jetson platform
+# @param[out] jetson_info:
+# @param[out] channel_info: the information related to pin/line, in
 def get_data():
     model = get_model()
 
