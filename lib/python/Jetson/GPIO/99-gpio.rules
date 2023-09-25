@@ -20,7 +20,7 @@
 # DEALINGS IN THE SOFTWARE.
 
 SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", \
-    PROGRAM="/bin/sh -c 'chown root:gpio /dev/%k; chmod 660 /dev/%k'"
+    PROGRAM="/bin/sh -c 'chown -R root:gpio /sys/class/gpio && chmod -R 770 /sys/class/gpio; chown root:gpio /dev/%k; chmod 660 /dev/%k'"
 
 SUBSYSTEM=="pwm", KERNEL=="pwmchip*", ACTION=="add", \
     PROGRAM="/bin/bash -c 'chown root:gpio /sys%p/{,un}export; chmod 220 /sys%p/{,un}export'"
