@@ -34,6 +34,9 @@ JETSON_ORIN_NANO='JETSON_ORIN_NANO'
 
 JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON_XAVIER, JETSON_NANO, JETSON_NX, JETSON_ORIN, JETSON_ORIN_NX, JETSON_ORIN_NANO]
 
+DSBOARD_NX2_Rev = '1.23' # or 1.24
+#DSBOARD_NX2_Rev = '1.0' # or 1.1 or 1.21
+
 # These arrays contain tuples of all the relevant GPIO data for each Jetson
 # Platform. The fields are:
 # - Linux GPIO pin number (line offset inside chip, not global),
@@ -183,13 +186,7 @@ JETSON_NX_PIN_DEFS = [
     (113, 'PR.05', "tegra194-gpio", 36, 16, 'UART1_CTS', 'UART1_CTS', None, None),
     (151, 'PY.02', "tegra194-gpio", 37, 26, 'SPI1_MOSI', 'SPI3_MOSI', None, None),
     (129, 'PT.07', "tegra194-gpio", 38, 20, 'I2S0_DIN', 'DAP5_DIN', None, None),
-    (128, 'PT.06', "tegra194-gpio", 40, 21, 'I2S0_DOUT', 'DAP5_DOUT', None, None),
-# DSBOX-NX2 IIO Pins
-    (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
-    (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+    (128, 'PT.06', "tegra194-gpio", 40, 21, 'I2S0_DOUT', 'DAP5_DOUT', None, None)
 ]
 compats_nx = (
     'nvidia,p3509-0000+p3668-0000',
@@ -198,6 +195,27 @@ compats_nx = (
     'nvidia,p3449-0000+p3668-0001',
     'nvidia,p3449-0000+p3668-0003',
 )
+# DSBOX-NX2 IIO Pins
+if DSBOARD_NX2_Rev == '1.23':
+    JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (149, 'PY.00', "tegra194-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (150, 'PY.01', "tegra194-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (151, 'PY.02', "tegra194-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (152, 'PY.03', "tegra194-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (153, 'PY.04', "tegra194-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
+
+elif DSBOARD_NX2_Rev == '1.0':
+    JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
+
 
 JETSON_XAVIER_PIN_DEFS = [
     (106, 'PQ.06', "tegra194-gpio", 7, 4, 'MCLK05', 'SOC_GPIO42', None, None),
@@ -256,23 +274,42 @@ JETSON_TX2_NX_PIN_DEFS = [
     (29, 'PW.05', "tegra-gpio-aon", 36, 16, 'UART1_CTS', 'UART3_CTS', None, None),
     (19, 'PV.03', "tegra-gpio-aon", 37, 26, 'SPI1_MOSI', 'GPIO_SEN3', None, None),
     (74, 'PJ.02', "tegra-gpio", 38, 20, 'I2S0_DIN', 'DAP1_DIN', None, None),
-    (73, 'PJ.01', "tegra-gpio", 40, 21, 'I2S0_DOUT', 'DAP1_DOUT', None, None),
+    (73, 'PJ.01', "tegra-gpio", 40, 21, 'I2S0_DOUT', 'DAP1_DOUT', None, None)
+]
+compats_tx2_nx = (
+    'nvidia,p3509-0000+p3636-0001',
+)
 # DSBOX-TX2NX IIO Pins
-    (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
-    (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+if DSBOARD_NX2_Rev == '1.23':
+    JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (17, 'PV.01', "tegra-gpio-aon", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (18, 'PV.02', "tegra-gpio-aon", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (19, 'PV.03', "tegra-gpio-aon", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (20, 'PV.04', "tegra-gpio-aon", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (19, 'PC.03', "tegra-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
+
+elif DSBOARD_NX2_Rev == '1.0':
+    JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
+
+JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2_EXTRA = [
     (21, 'PC.05', "tegra-gpio", 46, 46, 'I2C0_SCL', 'I2C0_SCL', None, None),
     (22, 'PC.06', "tegra-gpio", 47, 47, 'I2C0_SDA', 'I2C0_SDA', None, None),
     (152, 'PX.00', "tegra-gpio", 48, 48, 'UART0_TX', 'UART0_TX', None, None),
     (153, 'PX.01', "tegra-gpio", 49, 49, 'UART0_RX', 'UART0_RX', None, None),
     (154, 'PX.02', "tegra-gpio", 50, 50, 'UART0_RTS', 'UART0_RTS', None, None),
-    (155, 'PX.03', "tegra-gpio", 51, 51, 'UART0_CTS', 'UART0_CTS', None, None),
+    (155, 'PX.03', "tegra-gpio", 51, 51, 'UART0_CTS', 'UART0_CTS', None, None)
 ]
-compats_tx2_nx = (
-    'nvidia,p3509-0000+p3636-0001',
-)
+JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2_EXTRA)
+
 
 JETSON_TX2_PIN_DEFS = [
     (76, 'PJ.04', "tegra-gpio", 7, 4, 'PAUDIO_MCLK', 'AUD_MCLK', None, None),
@@ -368,19 +405,34 @@ JETSON_NANO_PIN_DEFS = [
     (51,  '', "tegra-gpio", 36, 16, 'UART1_CTS', 'UART2_CTS', None, None),
     (12,  '', "tegra-gpio", 37, 26, 'SPI1_MOSI', 'SPI2_MOSI', None, None),
     (77,  '', "tegra-gpio", 38, 20, 'I2S0_DIN', 'DAP4_DIN', None, None),
-    (78,  '', "tegra-gpio", 40, 21, 'I2S0_DOUT', 'DAP4_DOUT', None, None),
-# DSBOX-N2 IIO Pins
-    (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
-    (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+    (78,  '', "tegra-gpio", 40, 21, 'I2S0_DOUT', 'DAP4_DOUT', None, None)
 ]
 compats_nano = (
     'nvidia,p3450-0000',
     'nvidia,p3450-0002',
     'nvidia,jetson-nano',
 )
+# DSBOX-N2 IIO Pins
+if DSBOARD_NX2_Rev == '1.23':
+    JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
+        (14,  '', "tegra-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (13,  '', "tegra-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (12,  '', "tegra-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (15,  '', "tegra-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (232,  '', "tegra-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
+
+elif DSBOARD_NX2_Rev == '1.0':
+    JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
+
 
 jetson_gpio_data = {
     JETSON_ORIN_NX: (
