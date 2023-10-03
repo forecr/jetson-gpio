@@ -33,6 +33,9 @@ JETSON_ORIN_NX='JETSON_ORIN_NX'
 
 JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON_XAVIER, JETSON_NANO, JETSON_NX, JETSON_ORIN, JETSON_ORIN_NX]
 
+DSBOARD_NX2_Rev = '1.23' # or 1.24
+#DSBOARD_NX2_Rev = '1.0' # or 1.1 or 1.21
+
 # These arrays contain tuples of all the relevant GPIO data for each Jetson
 # Platform. The fields are:
 # - Linux GPIO pin number (within chip, not global),
@@ -163,13 +166,7 @@ JETSON_NX_PIN_DEFS = [
     ({224: 141, 169: 113}, {169:  'PR.05'}, "2200000.gpio", 36, 16, 'UART1_CTS', 'UART1_CTS', None, None),
     ({224: 194, 169: 151}, {169:  'PY.02'}, "2200000.gpio", 37, 26, 'SPI1_MOSI', 'SPI3_MOSI', None, None),
     ({224: 159, 169: 129}, {169:  'PT.07'}, "2200000.gpio", 38, 20, 'I2S0_DIN', 'DAP5_DIN', None, None),
-    ({224: 158, 169: 128}, {169:  'PT.06'}, "2200000.gpio", 40, 21, 'I2S0_DOUT', 'DAP5_DOUT', None, None),
-# DSBOX-NX2 IIO Pins
-    (0,  {}, "31e0000.i2c/i2c-8/8-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
-    (1,  {}, "31e0000.i2c/i2c-8/8-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (4,  {}, "31e0000.i2c/i2c-8/8-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (5,  {}, "31e0000.i2c/i2c-8/8-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (6,  {}, "31e0000.i2c/i2c-8/8-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+    ({224: 158, 169: 128}, {169:  'PT.06'}, "2200000.gpio", 40, 21, 'I2S0_DOUT', 'DAP5_DOUT', None, None)
 ]
 compats_nx = (
     'nvidia,p3509-0000+p3668-0000',
@@ -178,6 +175,27 @@ compats_nx = (
     'nvidia,p3449-0000+p3668-0001',
     'nvidia,p3449-0000+p3668-0003',
 )
+# DSBOX-NX2 IIO Pins
+if DSBOARD_NX2_Rev == '1.23':
+    JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
+        ({224: 192, 169: 149}, {169:  'PY.00'}, "2200000.gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        ({224: 193, 169: 150}, {169:  'PY.01'}, "2200000.gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        ({224: 194, 169: 151}, {169:  'PY.02'}, "2200000.gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        ({224: 195, 169: 152}, {169:  'PY.03'}, "2200000.gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        ({224: 196, 169: 153}, {169:  'PY.04'}, "2200000.gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
+
+elif DSBOARD_NX2_Rev == '1.0':
+    JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  {}, "31e0000.i2c/i2c-8/8-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  {}, "31e0000.i2c/i2c-8/8-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  {}, "31e0000.i2c/i2c-8/8-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  {}, "31e0000.i2c/i2c-8/8-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  {}, "31e0000.i2c/i2c-8/8-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
+
 
 JETSON_XAVIER_PIN_DEFS = [
     ({224: 134, 169: 106}, {169:  'PQ.06'}, "2200000.gpio", 7, 4, 'MCLK05', 'SOC_GPIO42', None, None),
@@ -237,23 +255,42 @@ JETSON_TX2_NX_PIN_DEFS = [
     ({64: 29, 47: 24}, {47:  'PW.05'}, "c2f0000.gpio", 36, 16, 'UART1_CTS', 'UART3_CTS', None, None),
     ({64: 19, 47: 14}, {47:  'PV.03'}, "c2f0000.gpio", 37, 26, 'SPI1_MOSI', 'GPIO_SEN3', None, None),
     ({192: 74, 140: 64}, {140:  'PJ.02'}, "2200000.gpio", 38, 20, 'I2S0_DIN', 'DAP1_DIN', None, None),
-    ({192:  73, 140:  63}, {140:  'PJ.01'}, "2200000.gpio", 40, 21, 'I2S0_DOUT', 'DAP1_DOUT', None, None),
+    ({192:  73, 140:  63}, {140:  'PJ.01'}, "2200000.gpio", 40, 21, 'I2S0_DOUT', 'DAP1_DOUT', None, None)
+]
+compats_tx2_nx = (
+    'nvidia,p3509-0000+p3636-0001',
+)
 # DSBOX-TX2NX IIO Pins
-    (0,  {}, "c240000.i2c/i2c-1/1-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
-    (1,  {}, "c240000.i2c/i2c-1/1-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (4,  {}, "c240000.i2c/i2c-1/1-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (5,  {}, "c240000.i2c/i2c-1/1-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (6,  {}, "c240000.i2c/i2c-1/1-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+if DSBOARD_NX2_Rev == '1.23':
+    JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
+        ({64:  17, 47: 12}, {47:  'PV.01'}, "c2f0000.gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        ({64: 18, 47: 13}, {47:  'PV.02'}, "c2f0000.gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        ({64: 19, 47: 14}, {47:  'PV.03'}, "c2f0000.gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        ({64: 20, 47: 15}, {47:  'PV.04'}, "c2f0000.gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        ({192:  19, 140: 63}, {140:  'PC.03'}, "2200000.gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
+
+elif DSBOARD_NX2_Rev == '1.0':
+    JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  {}, "c240000.i2c/i2c-1/1-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  {}, "c240000.i2c/i2c-1/1-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  {}, "c240000.i2c/i2c-1/1-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  {}, "c240000.i2c/i2c-1/1-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  {}, "c240000.i2c/i2c-1/1-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
+
+JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2_EXTRA = [
     ({192: 21, 140: 19}, {140:  'PC.05'}, "2200000.gpio", 46, 46, 'I2C0_SCL', 'I2C0_SCL', None, None),
     ({192: 22, 140: 20}, {140:  'PC.06'}, "2200000.gpio", 47, 47, 'I2C0_SDA', 'I2C0_SDA', None, None),
     ({192: 152, 140: 119}, {140:  'PX.00'}, "2200000.gpio", 48, 48, 'UART0_TX', 'UART0_TX', None, None),
     ({192: 153, 140: 120}, {140:  'PX.01'}, "2200000.gpio", 49, 49, 'UART0_RX', 'UART0_RX', None, None),
     ({192: 154, 140: 121}, {140:  'PX.02'}, "2200000.gpio", 50, 50, 'UART0_RTS', 'UART0_RTS', None, None),
-    ({192: 155, 140: 122}, {140:  'PX.03'}, "2200000.gpio", 51, 51, 'UART0_CTS', 'UART0_CTS', None, None),
+    ({192: 155, 140: 122}, {140:  'PX.03'}, "2200000.gpio", 51, 51, 'UART0_CTS', 'UART0_CTS', None, None)
 ]
-compats_tx2_nx = (
-    'nvidia,p3509-0000+p3636-0001',
-)
+JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2_EXTRA)
+
 
 JETSON_TX2_PIN_DEFS = [
     ({192:  76, 140:  66}, {140:  'PJ.04'}, "2200000.gpio", 7, 4, 'PAUDIO_MCLK', 'AUD_MCLK', None, None),
@@ -349,19 +386,34 @@ JETSON_NANO_PIN_DEFS = [
     (51, {}, "6000d000.gpio", 36, 16, 'UART1_CTS', 'UART2_CTS', None, None),
     (12, {}, "6000d000.gpio", 37, 26, 'SPI1_MOSI', 'SPI2_MOSI', None, None),
     (77, {}, "6000d000.gpio", 38, 20, 'I2S0_DIN', 'DAP4_DIN', None, None),
-    (78, {}, "6000d000.gpio", 40, 21, 'I2S0_DOUT', 'DAP4_DOUT', None, None),
-# DSBOX-N2 IIO Pins
-    (0,  {}, "7000c400.i2c/i2c-1/1-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
-    (1,  {}, "7000c400.i2c/i2c-1/1-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (4,  {}, "7000c400.i2c/i2c-1/1-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (5,  {}, "7000c400.i2c/i2c-1/1-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (6,  {}, "7000c400.i2c/i2c-1/1-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+    (78, {}, "6000d000.gpio", 40, 21, 'I2S0_DOUT', 'DAP4_DOUT', None, None)
 ]
 compats_nano = (
     'nvidia,p3450-0000',
     'nvidia,p3450-0002',
     'nvidia,jetson-nano',
 )
+# DSBOX-N2 IIO Pins
+if DSBOARD_NX2_Rev == '1.23':
+    JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
+        (14, {}, "6000d000.gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (13, {}, "6000d000.gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (12, {}, "6000d000.gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (15, {}, "6000d000.gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (232, {}, "6000d000.gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
+
+elif DSBOARD_NX2_Rev == '1.0':
+    JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  {}, "7000c400.i2c/i2c-1/1-0038", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  {}, "7000c400.i2c/i2c-1/1-0038", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  {}, "7000c400.i2c/i2c-1/1-0038", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  {}, "7000c400.i2c/i2c-1/1-0038", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  {}, "7000c400.i2c/i2c-1/1-0038", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
+
 
 jetson_gpio_data = {
     JETSON_ORIN_NX: (
