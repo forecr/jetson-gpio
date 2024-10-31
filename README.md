@@ -11,7 +11,7 @@ This document walks through what is contained in The Jetson GPIO library
 package, how to configure the system and run the provided sample applications,
 and the library API.
 
-**Attention:** If you will use this library in JetPack-4.x based system, please switch to the [v2.0.21](https://github.com/mistelektronik/jetson-gpio/tree/v2.0.21) branch.
+**Attention:** If you will use this library in JetPack-4.x based system, please switch to the [v2.0.21](https://github.com/forecr/jetson-gpio/tree/v2.0.21) branch.
 
 # Package Components
 
@@ -50,6 +50,7 @@ and decompress it. You may place the library files anywhere you like on your
 system. You may use the library directly from this directory by manually
 setting `PYTHONPATH`, or install it using `setup.py`:
 ```shell
+sudo apt install -y python3-pip
 sudo python3 setup.py install
 ```
 
@@ -192,6 +193,9 @@ setting up the mode and channels. To disable warnings, call:
 GPIO.setwarnings(False)
 ```
 
+Additionally, Jetson.GPIO uses **warnings** module to issue warning. Therefore,
+you can control the warning message using [Python Standard Library - warnings](https://docs.python.org/3/library/warnings.html#the-warnings-filter) 
+
 #### 4. Set up a channel
 
 The GPIO channel must be set up before use as input or output. To configure
@@ -245,7 +249,7 @@ You can also output to a list or tuple of channels:
 channels = [18, 12, 13] # or use tuples
 GPIO.output(channels, GPIO.HIGH) # or GPIO.LOW
 # set first channel to LOW and rest to HIGH
-GPIO.output(channel, (GPIO.LOW, GPIO.HIGH, GPIO.HIGH))
+GPIO.output(channels, (GPIO.LOW, GPIO.HIGH, GPIO.HIGH))
 ```
 
 #### 7. Clean up
@@ -305,7 +309,7 @@ GPIO.RISING, GPIO.FALLING or GPIO.BOTH. If you only want to limit the wait
 to a specified amount of time, a timeout can be optionally set:
 
 ```python
-# timeout is in milliseconds
+# timeout is in seconds
 GPIO.wait_for_edge(channel, GPIO.RISING, timeout=500)
 ```
 
@@ -439,7 +443,7 @@ You should map `/dev` into the container to access to the GPIO pins.
 So you need to add these options to `docker container run` command.
 
 ```shell
--v /dev:/dev \
+--device /dev/gpiochip0 \
 ```
 
 and if you want to use GPU from the container you also need to add these options:
@@ -459,7 +463,7 @@ sudo docker container run -it --rm \
 --privileged \
 -v /proc/device-tree/compatible:/proc/device-tree/compatible \
 -v /proc/device-tree/chosen:/proc/device-tree/chosen \
--v /dev:/dev \
+--device /dev/gpiochip0 \
 testimg /bin/bash
 ```
 
@@ -483,7 +487,7 @@ The following example will run `/bin/bash` from the container in non-privilleged
 ```shell
 sudo docker container run -it --rm \
 --runtime=nvidia --gpus all \
--v /dev:/dev \
+--device /dev/gpiochip0 \
 -e JETSON_MODEL_NAME=[PUT_YOUR_JETSON_MODEL_NAME_HERE] \
 testimg /bin/bash
 ```
