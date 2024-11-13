@@ -89,7 +89,14 @@ if FORECR_BOARD_TYPE == 'DSBOARD_ORNX':
         (125, 'PY.03', "tegra234-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
         (5, 'PA.05', "tegra234-gpio", 45, 45, 'PWR_LED_R', 'PWR_LED_R', None, None),
         (6, 'PA.06', "tegra234-gpio", 46, 46, 'PWR_LED_G', 'PWR_LED_G', None, None),
-        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None)
+        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None),
+        (12, 'PCC.00', "tegra234-gpio-aon", 48, 48, 'M2B_ENABLE1', 'M2B_ENABLE1', None, None),
+        (98, 'PP.06', "tegra234-gpio", 49, 49, 'M2B_ENABLE2', 'M2B_ENABLE2', None, None),
+        (41, 'PG.06', "tegra234-gpio", 50, 50, 'M2B_RESET', 'M2B_RESET', None, None),
+        (15, 'PCC.03', "tegra234-gpio-aon", 51, 51, 'M2B_PWR_OFF', 'M2B_PWR_OFF', None, None),
+        (85, 'PN.01', "tegra234-gpio", 52, 52, 'M2B_FULLCARD_PWRON', 'M2B_FULLCARD_PWRON', None, None),
+        (126, 'PY.04', "tegra234-gpio", 53, 53, 'M2B_USB_SELECT', 'M2B_USB_SELECT', None, None),
+        (4, 'PA.04', "tegra234-gpio", 54, 54, 'M2E_USB_SELECT', 'M2E_USB_SELECT', None, None)
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX)
 
