@@ -108,7 +108,12 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN':
         (125, 'PY.03', "tegra234-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
         (5, 'PA.05', "tegra234-gpio", 45, 45, 'PWR_LED_R', 'PWR_LED_R', None, None),
         (6, 'PA.06', "tegra234-gpio", 46, 46, 'PWR_LED_G', 'PWR_LED_G', None, None),
-        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None)
+        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None),
+        (43, 'PH.00', "tegra234-gpio", 48, 48, 'M2E_DISABLE', 'M2E_DISABLE', None, None),
+        (15, 'PCC.03', "tegra234-gpio-aon", 49, 49, 'M2E_USB_SELECT', 'M2E_USB_SELECT', None, None),
+        (41, 'PG.06', "tegra234-gpio", 50, 50, 'RS422_232', 'RS422_232', None, None),
+        (14, 'PCC.02', "tegra234-gpio-aon", 51, 51, 'HALF_FULL', 'HALF_FULL', None, None),
+        (12, 'PCC.00', "tegra234-gpio-aon", 52, 52, 'RS485_CTRL', 'RS485_CTRL', None, None)
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN)
 
@@ -120,7 +125,9 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN_Rev-1.0':
         (125, 'PY.03', "tegra234-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
         (5, 'PA.05', "tegra234-gpio", 45, 45, 'PWR_LED_R', 'PWR_LED_R', None, None),
         (6, 'PA.06', "tegra234-gpio", 46, 46, 'PWR_LED_G', 'PWR_LED_G', None, None),
-        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None)
+        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None),
+        (43, 'PH.00', "tegra234-gpio", 48, 48, 'M2E_DISABLE', 'M2E_DISABLE', None, None),
+        (15, 'PCC.03', "tegra234-gpio-aon", 49, 49, 'M2E_USB_SELECT', 'M2E_USB_SELECT', None, None)
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN)
 
