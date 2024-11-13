@@ -34,6 +34,9 @@ JETSON_ORIN_NANO='JETSON_ORIN_NANO'
 
 JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON_XAVIER, JETSON_NANO, JETSON_NX, JETSON_ORIN, JETSON_ORIN_NX, JETSON_ORIN_NANO]
 
+#FORECR_BOARD_TYPE = 'DSBOARD_ORNX' # compatible with DSBOARD-ORNX
+#FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN' # compatible with DSBOARD-ORNX-LAN rev-1.1 or newer
+#FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN_Rev-1.0' # compatible with DSBOARD-ORNX-LAN rev-1.0
 FORECR_BOARD_TYPE = 'DSBOARD_NX2' # compatible with DSBOARD-NX2 rev-1.23 or newer
 #FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.0' # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.22
 
@@ -75,16 +78,45 @@ JETSON_ORIN_NX_PIN_DEFS = [
     (113, 'PR.05', "tegra234-gpio", 36, 16, 'UART1_CTS', 'GP73_UART1_CTS_N', None, None),
     (124, 'PY.02', "tegra234-gpio", 37, 26, 'SPI1_MOSI', 'GP38_SPI3_MOSI', None, None),
     (52, 'PI.01', "tegra234-gpio", 38, 20, 'I2S0_SDIN', 'GP124', None, None),
-    (51, 'PI.00', "tegra234-gpio", 40, 21, 'I2S0_SDOUT', 'GP123', None, None),
-# DSBOARD-ORNX & DSBOARD-ORNX-LAN
-    (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
-    (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
-    (124, 'PY.02', "tegra234-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
-    (125, 'PY.03', "tegra234-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-    (5, 'PA.05', "tegra234-gpio", 45, 45, 'PWR_LED_R', 'PWR_LED_R', None, None),
-    (6, 'PA.06', "tegra234-gpio", 46, 46, 'PWR_LED_G', 'PWR_LED_G', None, None),
-    (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None)
+    (51, 'PI.00', "tegra234-gpio", 40, 21, 'I2S0_SDOUT', 'GP123', None, None)
 ]
+# DSBOARD-ORNX & DSBOARD-ORNX-LAN
+if FORECR_BOARD_TYPE == 'DSBOARD_ORNX':
+    JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX = [
+        (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (124, 'PY.02', "tegra234-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (125, 'PY.03', "tegra234-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (5, 'PA.05', "tegra234-gpio", 45, 45, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (6, 'PA.06', "tegra234-gpio", 46, 46, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None)
+    ]
+    JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX)
+
+elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN':
+    JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN = [
+        (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (124, 'PY.02', "tegra234-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (125, 'PY.03', "tegra234-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (5, 'PA.05', "tegra234-gpio", 45, 45, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (6, 'PA.06', "tegra234-gpio", 46, 46, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None)
+    ]
+    JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN)
+
+elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN_Rev-1.0':
+    JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN = [
+        (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (124, 'PY.02', "tegra234-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (125, 'PY.03', "tegra234-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (5, 'PA.05', "tegra234-gpio", 45, 45, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (6, 'PA.06', "tegra234-gpio", 46, 46, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (7, 'PA.07', "tegra234-gpio", 47, 47, 'PWR_LED_B', 'PWR_LED_B', None, None)
+    ]
+    JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN)
+
 
 compats_jetson_orins_nx = (
     "nvidia,p3509-0000+p3767-0000",
