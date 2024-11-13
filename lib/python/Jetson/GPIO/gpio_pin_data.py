@@ -34,7 +34,7 @@ JETSON_ORIN_NANO='JETSON_ORIN_NANO'
 
 JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON_XAVIER, JETSON_NANO, JETSON_NX, JETSON_ORIN, JETSON_ORIN_NX, JETSON_ORIN_NANO]
 
-FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.23' # compatible with DSBOARD-NX2 rev-1.23 or newer
+FORECR_BOARD_TYPE = 'DSBOARD_NX2' # compatible with DSBOARD-NX2 rev-1.23 or newer
 #FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.0' # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.22
 
 # These arrays contain tuples of all the relevant GPIO data for each Jetson
@@ -199,7 +199,7 @@ compats_nx = (
     'nvidia,p3449-0000+p3668-0003',
 )
 # DSBOX-NX2 IIO Pins
-if FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.23':
+if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
         (149, 'PY.00', "tegra194-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (150, 'PY.01', "tegra194-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -283,7 +283,7 @@ compats_tx2_nx = (
     'nvidia,p3509-0000+p3636-0001',
 )
 # DSBOX-TX2NX IIO Pins
-if FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.23':
+if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
         (17, 'PV.01', "tegra-gpio-aon", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (18, 'PV.02', "tegra-gpio-aon", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -416,7 +416,7 @@ compats_nano = (
     'nvidia,jetson-nano',
 )
 # DSBOX-N2 IIO Pins
-if FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.23':
+if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
         (14,  '', "tegra-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (13,  '', "tegra-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
