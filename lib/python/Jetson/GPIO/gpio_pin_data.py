@@ -296,15 +296,15 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_AGX':
         (1, '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
         (4, '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
         (5, '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-        (6, '', "pcf8574a", 44, 44, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
-        (104, 'PQ.04', "tegra234-gpio", 45, 45, 'M2B_ENABLE1', 'M2B_ENABLE1', None, None),
-        (96, 'PP.04', "tegra234-gpio", 46, 46, 'M2B_ENABLE2', 'M2B_ENABLE2', None, None),
-        (98, 'PP.06', "tegra234-gpio", 47, 47, 'M2B_RESET', 'M2B_RESET', None, None),
-        (1, 'PA.01', "tegra234-gpio", 48, 48, 'M2B_PWRON', 'M2B_PWRON', None, None),
-        (2, 'PA.02', "tegra234-gpio", 49, 49, 'M2B_FULLCARD_PWRON', 'M2B_FULLCARD_PWRON', None, None),
-        (80, 'PM.04', "tegra234-gpio", 50, 50, 'RS422_232', 'RS422_232', None, None),
-        (85, 'PN.01', "tegra234-gpio", 51, 51, 'HALF_FULL', 'HALF_FULL', None, None),
-        (28, 'PEE.05', "tegra234-gpio-aon", 52, 52, 'RS485_CTRL', 'RS485_CTRL', None, None)
+        (6, '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (104, 'PQ.04', "tegra234-gpio", 46, 46, 'M2B_ENABLE1', 'M2B_ENABLE1', None, None),
+        (96, 'PP.04', "tegra234-gpio", 47, 47, 'M2B_ENABLE2', 'M2B_ENABLE2', None, None),
+        (98, 'PP.06', "tegra234-gpio", 48, 48, 'M2B_RESET', 'M2B_RESET', None, None),
+        (1, 'PA.01', "tegra234-gpio", 49, 49, 'M2B_PWRON', 'M2B_PWRON', None, None),
+        (2, 'PA.02', "tegra234-gpio", 50, 50, 'M2B_FULLCARD_PWRON', 'M2B_FULLCARD_PWRON', None, None),
+        (80, 'PM.04', "tegra234-gpio", 51, 51, 'RS422_232', 'RS422_232', None, None),
+        (85, 'PN.01', "tegra234-gpio", 52, 52, 'HALF_FULL', 'HALF_FULL', None, None),
+        (28, 'PEE.05', "tegra234-gpio-aon", 53, 53, 'RS485_CTRL', 'RS485_CTRL', None, None)
     ]
     JETSON_ORIN_PIN_DEFS.extend(JETSON_ORIN_PIN_DEFS_DSBOARD_AGX)
 
