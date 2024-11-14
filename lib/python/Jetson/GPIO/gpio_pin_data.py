@@ -42,7 +42,7 @@ JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN' # compatible with DSBOARD-ORNX-LAN rev-1.1 or newer
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN_Rev-1.0' # compatible with DSBOARD-ORNX-LAN rev-1.0
 FORECR_BOARD_TYPE = 'DSBOARD_NX2' # compatible with DSBOARD-NX2 rev-1.23 or newer
-#FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.0' # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.22
+#FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.22' # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.22
 
 # These arrays contain tuples of all the relevant GPIO data for each Jetson
 # Platform. The fields are:
@@ -355,7 +355,7 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     ]
     JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.0':
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
     JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -439,7 +439,7 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     ]
     JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.0':
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
     JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -572,7 +572,7 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     ]
     JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.0':
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
     JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
