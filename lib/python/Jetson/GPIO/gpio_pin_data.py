@@ -37,6 +37,7 @@ JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON
 #FORECR_BOARD_TYPE = 'DSBOARD_AGXMAX' # compatible with DSBOARD-AGXMAX rev-1.2 or newer
 #FORECR_BOARD_TYPE = 'DSBOARD_AGXMAX_Rev-1.1' # compatible with DSBOARD-AGXMAX rev-1.0 or 1.1
 #FORECR_BOARD_TYPE = 'DSBOARD_AGX' # compatible with DSBOARD-AGX
+#FORECR_BOARD_TYPE = 'RAIBOARD_ORNX' # compatible with RAIBOARD-ORNX
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX' # compatible with DSBOARD-ORNX
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN' # compatible with DSBOARD-ORNX-LAN rev-1.1 or newer
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN_Rev-1.0' # compatible with DSBOARD-ORNX-LAN rev-1.0
@@ -83,8 +84,38 @@ JETSON_ORIN_NX_PIN_DEFS = [
     (52, 'PI.01', "tegra234-gpio", 38, 20, 'I2S0_SDIN', 'GP124', None, None),
     (51, 'PI.00', "tegra234-gpio", 40, 21, 'I2S0_SDOUT', 'GP123', None, None)
 ]
-# DSBOARD-ORNX & DSBOARD-ORNX-LAN
-if FORECR_BOARD_TYPE == 'DSBOARD_ORNX':
+# RAIBOARD-ORNX, DSBOARD-ORNX & DSBOARD-ORNX-LAN
+if FORECR_BOARD_TYPE == 'RAIBOARD_ORNX':
+    JETSON_ORIN_NX_PIN_DEFS_RAIBOARD_ORNX = [
+        (51, 'PI.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (52, 'PI.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (53, 'PI.02', "tegra234-gpio", 43, 43, 'DIGITAL_IN2', 'DIGITAL_IN1', None, None),
+        (50, 'PH.07', "tegra234-gpio", 44, 44, 'DIGITAL_IN3', 'DIGITAL_IN1', None, None),
+        (4, 'PA.04', "tegra234-gpio", 45, 45, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5, 'PA.05', "tegra234-gpio", 46, 46, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6, 'PA.06', "tegra234-gpio", 47, 47, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (7, 'PA.07', "tegra234-gpio", 48, 48, 'DIGITAL_OUT3', 'DIGITAL_OUT3', None, None),
+        (12, 'PCC.00', "tegra234-gpio-aon", 49, 49, 'M2B_ENABLE1', 'M2B_ENABLE1', None, None),
+        (98, 'PP.06', "tegra234-gpio", 50, 50, 'M2B_ENABLE2', 'M2B_ENABLE2', None, None),
+        (106, 'PQ.06', "tegra234-gpio", 51, 51, 'M2B_RESET', 'M2B_RESET', None, None),
+        (15, 'PCC.03', "tegra234-gpio-aon", 52, 52, 'M2B_PWR_OFF', 'M2B_PWR_OFF', None, None),
+        (85, 'PN.01', "tegra234-gpio", 53, 53, 'M2B_FULLCARD_PWRON', 'M2B_FULLCARD_PWRON', None, None),
+        (144, 'PAC.06', "tegra234-gpio", 54, 54, 'M2B_USB_SELECT', 'M2B_USB_SELECT', None, None),
+        (43, 'PH.00', "tegra234-gpio", 55, 55, 'M2E_DISABLE1', 'M2E_DISABLE1', None, None),
+        (112, 'PR.04', "tegra234-gpio", 56, 56, 'M2E_DISABLE2', 'M2E_DISABLE2', None, None),
+        (144, 'PAC.06', "tegra234-gpio", 57, 57, 'M2E_USB_SELECT', 'M2E_USB_SELECT', None, None),
+        (123, 'PY.01', "tegra234-gpio", 58, 58, 'RS422_232_CH0', 'RS422_232_CH0', None, None),
+        (122, 'PY.00', "tegra234-gpio", 59, 59, 'HALF_FULL_CH0', 'HALF_FULL_CH0', None, None),
+        (137, 'PZ.07', "tegra234-gpio", 60, 60, 'TX_ENABLE_CH0', 'TX_ENABLE_CH0', None, None),
+        (120, 'PX.06', "tegra234-gpio", 61, 61, 'RX_DISABLE_CH0', 'RX_DISABLE_CH0', None, None),
+        (126, 'PY.04', "tegra234-gpio", 62, 62, 'RS422_232_CH1', 'RS422_232_CH1', None, None),
+        (125, 'PY.03', "tegra234-gpio", 63, 63, 'HALF_FULL_CH1', 'HALF_FULL_CH1', None, None),
+        (124, 'PY.02', "tegra234-gpio", 64, 64, 'TX_ENABLE_CH1', 'TX_ENABLE_CH1', None, None),
+        (121, 'PX.07', "tegra234-gpio", 65, 65, 'RX_DISABLE_CH1', 'RX_DISABLE_CH1', None, None)
+    ]
+    JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_RAIBOARD_ORNX)
+
+elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX':
     JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX = [
         (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
