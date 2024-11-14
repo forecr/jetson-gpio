@@ -84,7 +84,7 @@ JETSON_ORIN_NX_PIN_DEFS = [
     (52, 'PI.01', "tegra234-gpio", 38, 20, 'I2S0_SDIN', 'GP124', None, None),
     (51, 'PI.00', "tegra234-gpio", 40, 21, 'I2S0_SDOUT', 'GP123', None, None)
 ]
-# RAIBOARD-ORNX, DSBOARD-ORNX & DSBOARD-ORNX-LAN
+# RAIBOARD-ORNX, DSBOARD-ORNX, DSBOARD-ORNX-LAN & DSBOARD-NX2
 if FORECR_BOARD_TYPE == 'RAIBOARD_ORNX':
     JETSON_ORIN_NX_PIN_DEFS_RAIBOARD_ORNX = [
         (51, 'PI.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
@@ -164,6 +164,40 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN_Rev-1.0':
         (15, 'PCC.03', "tegra234-gpio-aon", 49, 49, 'M2E_USB_SELECT', 'M2E_USB_SELECT', None, None)
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN)
+
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2':
+    JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (124, 'PY.02', "tegra234-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (125, 'PY.03', "tegra234-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (126, 'PY.04', "tegra234-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (5, 'PA.05', "tegra234-gpio", 46, 46, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (6, 'PA.06', "tegra234-gpio", 47, 47, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (7, 'PA.07', "tegra234-gpio", 48, 48, 'PWR_LED_B', 'PWR_LED_B', None, None),
+        (105, 'PQ.05', "tegra234-gpio", 49, 49, 'M2B_RESET', 'M2B_RESET', None, None),
+        (41, 'PG.06', "tegra234-gpio", 50, 50, 'RS422_232', 'RS422_232', None, None),
+        (144, 'PAC.06', "tegra234-gpio", 51, 51, 'HALF_FULL', 'HALF_FULL', None, None),
+        (15, 'PCC.03', "tegra234-gpio-aon", 52, 52, 'RS485_CTRL', 'RS485_CTRL', None, None)
+    ]
+    JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2)
+
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
+    JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (0, '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1, '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4, '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5, '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6, '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (2, '', "pcf8574a", 46, 46, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (3, '', "pcf8574a", 47, 47, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (7, '', "pcf8574a", 48, 48, 'PWR_LED_B', 'PWR_LED_B', None, None),
+        (105, 'PQ.05', "tegra234-gpio", 49, 49, 'M2B_RESET', 'M2B_RESET', None, None),
+        (144, 'PAC.06', "tegra234-gpio", 50, 50, 'RS422_232', 'RS422_232', None, None),
+        (41, 'PG.06', "tegra234-gpio", 51, 51, 'HALF_FULL', 'HALF_FULL', None, None),
+        (15, 'PCC.03', "tegra234-gpio-aon", 52, 52, 'RS485_CTRL', 'RS485_CTRL', None, None)
+    ]
+    JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2)
 
 
 compats_jetson_orins_nx = (
