@@ -41,6 +41,7 @@ JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX' # compatible with DSBOARD-ORNX
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN' # compatible with DSBOARD-ORNX-LAN rev-1.1 or newer
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN_Rev-1.0' # compatible with DSBOARD-ORNX-LAN rev-1.0
+#FORECR_BOARD_TYPE = 'DSBOARD_XV2' # compatible with DSBOARD-XV2
 FORECR_BOARD_TYPE = 'DSBOARD_NX2' # compatible with DSBOARD-NX2 rev-1.23 or newer
 #FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.22' # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.22
 
@@ -439,6 +440,20 @@ compats_xavier = (
     'nvidia,galen-industrial',
     'nvidia,jetson-xavier-industrial',
 )
+
+# DSBOARD-XV2
+if FORECR_BOARD_TYPE == 'DSBOARD_XV2':
+    JETSON_XAVIER_PIN_DEFS_DSBOARD_XV2 = [
+        (0, '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1, '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4, '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5, '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6, '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (127, 'PT.05', "tegra194-gpio", 46, 46, 'RS422_232', 'RS422_232', None, None),
+        (128, 'PT.06', "tegra194-gpio", 47, 47, 'HALF_FULL', 'HALF_FULL', None, None),
+        (125, 'PT.03', "tegra194-gpio", 48, 48, 'RS485_CTRL', 'RS485_CTRL', None, None)
+    ]
+    JETSON_XAVIER_PIN_DEFS.extend(JETSON_XAVIER_PIN_DEFS_DSBOARD_XV2)
 
 JETSON_TX2_NX_PIN_DEFS = [
     (76, 'PJ.04', "tegra-gpio", 7, 4, 'GPIO09', 'AUD_MCLK', None, None),
