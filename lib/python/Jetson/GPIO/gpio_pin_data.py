@@ -38,6 +38,7 @@ JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON
 #FORECR_BOARD_TYPE = 'DSBOARD_AGXMAX' # compatible with DSBOARD-AGXMAX rev-1.2 or newer
 #FORECR_BOARD_TYPE = 'DSBOARD_AGXMAX_Rev-1.1' # compatible with DSBOARD-AGXMAX rev-1.0 or 1.1
 #FORECR_BOARD_TYPE = 'DSBOARD_AGX' # compatible with DSBOARD-AGX
+#FORECR_BOARD_TYPE = 'MILBOARD_ORNX' # compatible with MILBOARD-ORNX
 #FORECR_BOARD_TYPE = 'RAIBOARD_ORNX' # compatible with RAIBOARD-ORNX
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX' # compatible with DSBOARD-ORNX
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN' # compatible with DSBOARD-ORNX-LAN rev-1.1 or newer
@@ -86,8 +87,28 @@ JETSON_ORIN_NX_PIN_DEFS = [
     (52, 'PI.01', "tegra234-gpio", 38, 20, 'I2S0_SDIN', 'GP124', None, None),
     (51, 'PI.00', "tegra234-gpio", 40, 21, 'I2S0_SDOUT', 'GP123', None, None)
 ]
-# RAIBOARD-ORNX, DSBOARD-ORNX, DSBOARD-ORNX-LAN & DSBOARD-NX2
-if FORECR_BOARD_TYPE == 'RAIBOARD_ORNX':
+# MILBOARD-ORNX, RAIBOARD-ORNX, DSBOARD-ORNX, DSBOARD-ORNX-LAN & DSBOARD-NX2
+if FORECR_BOARD_TYPE == 'MILBOARD_ORNX':
+    JETSON_ORIN_NX_PIN_DEFS_MILBOARD_ORNX = [
+        (12, 'PCC.00', "tegra234-gpio-aon", 41, 41, 'M2B_ENABLE1', 'M2B_ENABLE1', None, None),
+        (98, 'PP.06', "tegra234-gpio", 42, 42, 'M2B_ENABLE2', 'M2B_ENABLE2', None, None),
+        (106, 'PQ.06', "tegra234-gpio", 43, 43, 'M2B_RESET', 'M2B_RESET', None, None),
+        (15, 'PCC.03', "tegra234-gpio-aon", 44, 44, 'M2B_PWR_OFF', 'M2B_PWR_OFF', None, None),
+        (85, 'PN.01', "tegra234-gpio", 45, 45, 'M2B_FULLCARD_PWRON', 'M2B_FULLCARD_PWRON', None, None),
+        (7, 'CAN0_TERM_SEL_N', "pca9535", 46, 46, 'CAN0_TERM', 'CAN0_TERM', None, None),
+        (15, 'CAN1_TERM_SEL_N', "pca9535", 47, 47, 'CAN1_TERM', 'CAN1_TERM', None, None),
+        (4, 'SERIAL_CH0.RS485/RS232#', "pca9535", 48, 48, 'RS422_232_CH0', 'RS422_232_CH0', None, None),
+        (5, 'SERIAL_CH0.HALF/FULL#', "pca9535", 49, 49, 'HALF_FULL_CH0', 'HALF_FULL_CH0', None, None),
+        (0, 'SERIAL_CH0.DE', "pca9535", 50, 50, 'TX_ENABLE_CH0', 'TX_ENABLE_CH0', None, None),
+        (6, 'SERIAL_CH0.RE#', "pca9535", 51, 51, 'RX_DISABLE_CH0', 'RX_DISABLE_CH0', None, None),
+        (12, 'SERIAL_CH1.RS485/RS232#', "pca9535", 52, 52, 'RS422_232_CH1', 'RS422_232_CH1', None, None),
+        (13, 'SERIAL_CH1.HALF/FULL#', "pca9535", 53, 53, 'HALF_FULL_CH1', 'HALF_FULL_CH1', None, None),
+        (8, 'SERIAL_CH1.DE', "pca9535", 54, 54, 'TX_ENABLE_CH1', 'TX_ENABLE_CH1', None, None),
+        (14, 'SERIAL_CH1.RE#', "pca9535", 55, 55, 'RX_DISABLE_CH1', 'RX_DISABLE_CH1', None, None)
+    ]
+    JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_MILBOARD_ORNX)
+
+elif FORECR_BOARD_TYPE == 'RAIBOARD_ORNX':
     JETSON_ORIN_NX_PIN_DEFS_RAIBOARD_ORNX = [
         (51, 'PI.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (52, 'PI.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
