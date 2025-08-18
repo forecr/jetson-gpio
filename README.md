@@ -62,7 +62,7 @@ be set first.
 Create a new gpio user group. Then add your user to the newly created group.
 ```shell
 sudo groupadd -f -r gpio
-sudo usermod -a -G gpio your_user_name
+sudo usermod -a -G gpio $USER
 ```
 
 Install custom udev rules by copying the 99-gpio.rules file into the rules.d
