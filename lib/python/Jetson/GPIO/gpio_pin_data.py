@@ -449,7 +449,10 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
         (150, 'PY.01', "tegra194-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
         (151, 'PY.02', "tegra194-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
         (152, 'PY.03', "tegra194-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-        (153, 'PY.04', "tegra194-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+        (153, 'PY.04', "tegra194-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (124, 'PT.02', "tegra194-gpio", 46, 46, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (125, 'PT.03', "tegra194-gpio", 47, 47, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (126, 'PT.04', "tegra194-gpio", 48, 48, 'PWR_LED_B', 'PWR_LED_B', None, None)
     ]
     JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
 
@@ -459,7 +462,10 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
         (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
         (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (2,  '', "pcf8574a", 46, 46, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (3,  '', "pcf8574a", 47, 47, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (7,  '', "pcf8574a", 48, 48, 'PWR_LED_B', 'PWR_LED_B', None, None)
     ]
     JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
 
@@ -557,7 +563,10 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
         (18, 'PV.02', "tegra-gpio-aon", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
         (19, 'PV.03', "tegra-gpio-aon", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
         (20, 'PV.04', "tegra-gpio-aon", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-        (19, 'PC.03', "tegra-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+        (19, 'PC.03', "tegra-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (99,  'PM.03', "tegra-gpio", 46, 46, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (96,  'PM.00', "tegra-gpio", 47, 47, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (97,  'PM.01', "tegra-gpio", 48, 48, 'PWR_LED_B', 'PWR_LED_B', None, None)
     ]
     JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
 
@@ -567,7 +576,10 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
         (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
         (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (2,  '', "pcf8574a", 46, 46, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (3,  '', "pcf8574a", 47, 47, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (7,  '', "pcf8574a", 48, 48, 'PWR_LED_B', 'PWR_LED_B', None, None)
     ]
     JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
 
@@ -580,17 +592,6 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
         (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
     ]
     JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
-
-JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2_EXTRA = [
-    (21, 'PC.05', "tegra-gpio", 46, 46, 'I2C0_SCL', 'I2C0_SCL', None, None),
-    (22, 'PC.06', "tegra-gpio", 47, 47, 'I2C0_SDA', 'I2C0_SDA', None, None),
-    (152, 'PX.00', "tegra-gpio", 48, 48, 'UART0_TX', 'UART0_TX', None, None),
-    (153, 'PX.01', "tegra-gpio", 49, 49, 'UART0_RX', 'UART0_RX', None, None),
-    (154, 'PX.02', "tegra-gpio", 50, 50, 'UART0_RTS', 'UART0_RTS', None, None),
-    (155, 'PX.03', "tegra-gpio", 51, 51, 'UART0_CTS', 'UART0_CTS', None, None)
-]
-JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2_EXTRA)
-
 
 JETSON_TX2_PIN_DEFS = [
     (76, 'PJ.04', "tegra-gpio", 7, 4, 'PAUDIO_MCLK', 'AUD_MCLK', None, None),
@@ -700,7 +701,10 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
         (13,  '', "tegra-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
         (12,  '', "tegra-gpio", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
         (15,  '', "tegra-gpio", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-        (232,  '', "tegra-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+        (232,  '', "tegra-gpio", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (34,  '', "tegra-gpio", 46, 46, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (33,  '', "tegra-gpio", 47, 47, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (32,  '', "tegra-gpio", 48, 48, 'PWR_LED_B', 'PWR_LED_B', None, None)
     ]
     JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
 
@@ -710,7 +714,10 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
         (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
         (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
-        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (2,  '', "pcf8574a", 46, 46, 'PWR_LED_R', 'PWR_LED_R', None, None),
+        (3,  '', "pcf8574a", 47, 47, 'PWR_LED_G', 'PWR_LED_G', None, None),
+        (7,  '', "pcf8574a", 48, 48, 'PWR_LED_B', 'PWR_LED_B', None, None)
     ]
     JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
 
