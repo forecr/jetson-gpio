@@ -45,7 +45,8 @@ JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON
 #FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN_Rev-1.0' # compatible with DSBOARD-ORNX-LAN rev-1.0
 #FORECR_BOARD_TYPE = 'DSBOARD_XV2' # compatible with DSBOARD-XV2
 FORECR_BOARD_TYPE = 'DSBOARD_NX2' # compatible with DSBOARD-NX2 rev-1.23 or newer
-#FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.22' # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.22
+#FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.22' # compatible with DSBOARD-NX2 rev-1.22
+#FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.21' # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.21
 
 # These arrays contain tuples of all the relevant GPIO data for each Jetson
 # Platform. The fields are:
@@ -219,6 +220,20 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
         (144, 'PAC.06', "tegra234-gpio", 50, 50, 'RS422_232', 'RS422_232', None, None),
         (41, 'PG.06', "tegra234-gpio", 51, 51, 'HALF_FULL', 'HALF_FULL', None, None),
         (15, 'PCC.03', "tegra234-gpio-aon", 52, 52, 'RS485_CTRL', 'RS485_CTRL', None, None)
+    ]
+    JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2)
+
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
+    JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (0, '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1, '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4, '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5, '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6, '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None),
+        (105, 'PQ.05', "tegra234-gpio", 46, 46, 'M2B_RESET', 'M2B_RESET', None, None),
+        (144, 'PAC.06', "tegra234-gpio", 47, 47, 'RS422_232', 'RS422_232', None, None),
+        (41, 'PG.06', "tegra234-gpio", 48, 48, 'HALF_FULL', 'HALF_FULL', None, None),
+        (15, 'PCC.03', "tegra234-gpio-aon", 49, 49, 'RS485_CTRL', 'RS485_CTRL', None, None)
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2)
 
@@ -448,6 +463,16 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
     ]
     JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
 
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
+    JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
+
 
 JETSON_XAVIER_PIN_DEFS = [
     (106, 'PQ.06', "tegra194-gpio", 7, 4, 'MCLK05', 'SOC_GPIO42', None, None),
@@ -537,6 +562,16 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
 
 elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
+    JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
+
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
     JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -670,6 +705,16 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
 
 elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
+    JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
+        (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
+        (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
+        (4,  '', "pcf8574a", 43, 43, 'DIGITAL_OUT0', 'DIGITAL_OUT0', None, None),
+        (5,  '', "pcf8574a", 44, 44, 'DIGITAL_OUT1', 'DIGITAL_OUT1', None, None),
+        (6,  '', "pcf8574a", 45, 45, 'DIGITAL_OUT2', 'DIGITAL_OUT2', None, None)
+    ]
+    JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
+
+elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
     JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
