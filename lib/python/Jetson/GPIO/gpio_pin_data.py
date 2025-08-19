@@ -96,16 +96,16 @@ if FORECR_BOARD_TYPE == 'MILBOARD_ORNX':
         (106, 'PQ.06', "tegra234-gpio", 43, 43, 'M2B_RESET', 'M2B_RESET', None, None),
         (15, 'PCC.03', "tegra234-gpio-aon", 44, 44, 'M2B_PWR_OFF', 'M2B_PWR_OFF', None, None),
         (85, 'PN.01', "tegra234-gpio", 45, 45, 'M2B_FULLCARD_PWRON', 'M2B_FULLCARD_PWRON', None, None),
-        (7, 'CAN0_TERM_SEL_N', "pca9535", 46, 46, 'CAN0_TERM', 'CAN0_TERM', None, None),
-        (15, 'CAN1_TERM_SEL_N', "pca9535", 47, 47, 'CAN1_TERM', 'CAN1_TERM', None, None),
-        (4, 'SERIAL_CH0.RS485/RS232#', "pca9535", 48, 48, 'RS422_232_CH0', 'RS422_232_CH0', None, None),
-        (5, 'SERIAL_CH0.HALF/FULL#', "pca9535", 49, 49, 'HALF_FULL_CH0', 'HALF_FULL_CH0', None, None),
-        (0, 'SERIAL_CH0.DE', "pca9535", 50, 50, 'TX_ENABLE_CH0', 'TX_ENABLE_CH0', None, None),
-        (6, 'SERIAL_CH0.RE#', "pca9535", 51, 51, 'RX_DISABLE_CH0', 'RX_DISABLE_CH0', None, None),
-        (12, 'SERIAL_CH1.RS485/RS232#', "pca9535", 52, 52, 'RS422_232_CH1', 'RS422_232_CH1', None, None),
-        (13, 'SERIAL_CH1.HALF/FULL#', "pca9535", 53, 53, 'HALF_FULL_CH1', 'HALF_FULL_CH1', None, None),
-        (8, 'SERIAL_CH1.DE', "pca9535", 54, 54, 'TX_ENABLE_CH1', 'TX_ENABLE_CH1', None, None),
-        (14, 'SERIAL_CH1.RE#', "pca9535", 55, 55, 'RX_DISABLE_CH1', 'RX_DISABLE_CH1', None, None)
+        (7, 'CAN0_TERM_SEL_N', "0-0027", 46, 46, 'CAN0_TERM', 'CAN0_TERM', None, None),
+        (15, 'CAN1_TERM_SEL_N', "0-0027", 47, 47, 'CAN1_TERM', 'CAN1_TERM', None, None),
+        (4, 'SERIAL_CH0.RS485/RS232#', "0-0027", 48, 48, 'RS422_232_CH0', 'RS422_232_CH0', None, None),
+        (5, 'SERIAL_CH0.HALF/FULL#', "0-0027", 49, 49, 'HALF_FULL_CH0', 'HALF_FULL_CH0', None, None),
+        (0, 'SERIAL_CH0.DE', "0-0027", 50, 50, 'TX_ENABLE_CH0', 'TX_ENABLE_CH0', None, None),
+        (6, 'SERIAL_CH0.RE#', "0-0027", 51, 51, 'RX_DISABLE_CH0', 'RX_DISABLE_CH0', None, None),
+        (12, 'SERIAL_CH1.RS485/RS232#', "0-0027", 52, 52, 'RS422_232_CH1', 'RS422_232_CH1', None, None),
+        (13, 'SERIAL_CH1.HALF/FULL#', "0-0027", 53, 53, 'HALF_FULL_CH1', 'HALF_FULL_CH1', None, None),
+        (8, 'SERIAL_CH1.DE', "0-0027", 54, 54, 'TX_ENABLE_CH1', 'TX_ENABLE_CH1', None, None),
+        (14, 'SERIAL_CH1.RE#', "0-0027", 55, 55, 'RX_DISABLE_CH1', 'RX_DISABLE_CH1', None, None)
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_MILBOARD_ORNX)
 
