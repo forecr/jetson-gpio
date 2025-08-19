@@ -47,7 +47,16 @@ sudo pip install Jetson.GPIO
 
 You may clone this git repository, or download a copy of it as an archive file
 and decompress it. You may place the library files anywhere you like on your
-system. You may use the library directly from this directory by manually
+system.
+
+Before installing it manually, please check the board type that defined
+in gpio_pin_data.py file. If you are using different one, please comment the
+default value and uncomment the correct one.
+```shell
+cat lib/python/Jetson/GPIO/gpio_pin_data.py | grep ^FORECR_BOARD_TYPE
+```
+
+You may use the library directly from this directory by manually
 setting `PYTHONPATH`, or install it using `setup.py`:
 ```shell
 sudo apt install -y python3-pip
