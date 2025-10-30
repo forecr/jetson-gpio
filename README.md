@@ -43,7 +43,7 @@ The easiest way to install this library is using `pip`:
 sudo pip install Jetson.GPIO
 ```
 
-## Manual download 
+## Manual download (compatible for Forecr products)
 
 You may clone this git repository, or download a copy of it as an archive file
 and decompress it. You may place the library files anywhere you like on your
@@ -93,6 +93,23 @@ rules by running:
 ```shell
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
+
+# Pinmux Lookup Tool
+
+The `jetson-gpio-pinmux-lookup` command-line tool helps you find the pinmux register address for GPIO pins. This is useful for debugging or setting up pinmux configurations.
+
+**Usage:**
+```shell
+jetson-gpio-pinmux-lookup <gpio_pin_number>
+```
+
+**Example:**
+```shell
+jetson-gpio-pinmux-lookup 7
+# Output on Orin Device: GPIO Pin 7: Mux Register Address = 0x2430070
+```
+
+The tool accepts BOARD mode GPIO pin numbers (1-40) and returns the corresponding pinmux register address in hexadecimal format.
 
 # Running the sample scripts
 
@@ -196,8 +213,11 @@ None.
 It is possible that the GPIO you are trying to use is already being used
 external to the current application. In such a condition, the Jetson GPIO
 library will warn you if the GPIO being used is configured to anything but the
-default direction (input). It will also warn you if you try cleaning up before
-setting up the mode and channels. To disable warnings, call:
+default direction (input). It will also warn you if:
+* You try cleaning up before setting up the mode and channels.
+* (Orin NX/Nano only) The pinmux for a requested pin is not properly confirgured to GPIO and the correct direction.
+
+To disable warnings, call:
 ```python
 GPIO.setwarnings(False)
 ```
