@@ -26,11 +26,20 @@ pin_defs, jetson_info = GPIO.gpio_pin_data.jetson_gpio_data.get(GPIO.model)
 #print(pin_defs)
 #print(json.dumps(jetson_info, indent=2))
 
-print('Module Type: '+ GPIO.model)
+if hasattr(GPIO.gpio_pin_data, 'FORECR_BOARD_TYPE'):
+    print('Module Type: '+ GPIO.model +' for '+ GPIO.gpio_pin_data.FORECR_BOARD_TYPE)
+else:
+    print('Module Type: '+ GPIO.model)
+
 print('')
 
 pin_def_table = pandas.DataFrame.from_dict(pin_defs)
-pin_def_table.set_axis(['Offset', 'Name', 'Chip', 'BOARD', 'BCM', 'CVM', 'TEGRA_SOC', 'PWM Dir', 'PWM ID', 'PADCTL'], axis=1, inplace=True)
+
+if len(pin_def_table.columns) == 9:
+    pin_def_table.set_axis(['Offset', 'Name', 'Chip', 'BOARD', 'BCM', 'CVM', 'TEGRA_SOC', 'PWM Dir', 'PWM ID'], axis=1, inplace=True)
+else:
+    pin_def_table.set_axis(['Offset', 'Name', 'Chip', 'BOARD', 'BCM', 'CVM', 'TEGRA_SOC', 'PWM Dir', 'PWM ID', 'PADCTL'], axis=1, inplace=True)
+
 print('Offset    -> Linux GPIO pin number (line offset inside chip, not global)')
 print('Name      -> Linux exported GPIO name')
 print('Chip      -> GPIO chip name/instance')
