@@ -63,6 +63,29 @@ sudo apt install -y python3-pip
 sudo python3 setup.py install
 ```
 
+### Specify board at install
+
+```shell
+sudo python3 setup.py install --board <board_name>
+```
+Where `<board_name>` can be one of the following:
+- RAIBOARD_AGX
+- DSBOARD_AGXMAX
+- DSBOARD_AGXMAX_Rev-1.1
+- DSBOARD_AGX
+- MILBOARD_ORNX
+- RAIBOARD_ORNX
+- DSBOARD_ORNX
+- DSBOARD_ORNX_LAN
+- DSBOARD_ORNX_LAN_Rev-1.0
+- DSBOARD_XV2
+- DSBOARD_NX2
+- DSBOARD_NX2_Rev-1.22
+- DSBOARD_NX2_Rev-1.21
+
+If a board is not specified, it will default to **DSBOARD_NX2**.
+
+
 # Setting User Permissions
 
 In order to use the Jetson GPIO Library, the correct user permissions/groups must
