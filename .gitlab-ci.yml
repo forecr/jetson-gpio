@@ -1,0 +1,39 @@
+build:
+  stage: build
+  tags: 
+    - os/linux-arm
+  image: arm64v8/ubuntu:22.04   # ARM64 base image
+  before_script:
+    - apt-get update
+    - apt-get install -y debhelper dh-python python-all python-all-dev python-setuptools python3-all python3-all-dev python3-setuptools dpkg-dev git
+  script:
+    # Build Debian package
+    - dpkg-buildpackage -us -uc
+
+    # Create directory for artifacts
+    - mkdir -p build_artifacts
+
+    # Move generated .deb/.changes/.build files into build_artifacts/
+    - mv ../*.deb ../*.changes ../*.build build_artifacts/ || true
+
+    # Extract version from debian/changelog using dpkg-parsechangelog
+    - VERSION=$(dpkg-parsechangelog -S Version | sed 's/-[0-9].*$//')
+
+    # Generate SHA256 checksums and file sizes for all .deb files
+    - cd build_artifacts
+    - sha256sum *.deb | while read -r hash file; do
+        size=$(stat -c%s "$file");
+        echo "$hash $file $size" >> checksums.txt;
+      done
+
+    # Create the release message file (build_report.txt)
+    - echo "Add jetson-gpio v${VERSION} deb packages for noble" > build_report.txt
+    - echo "Built locally on Jetson." >> build_report.txt
+    - echo "" >> build_report.txt
+    - cat checksums.txt >> build_report.txt
+
+  artifacts:
+    paths:
+      - build_artifacts/
+    expire_in: 1 day
+    when: on_success
