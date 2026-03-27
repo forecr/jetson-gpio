@@ -35,19 +35,22 @@ JETSON_THOR_REFERENCE='JETSON_THOR_REFERENCE'
 
 JETSON_MODELS = [JETSON_TX1, JETSON_TX2, CLARA_AGX_XAVIER, JETSON_TX2_NX, JETSON_XAVIER, JETSON_NANO, JETSON_NX, JETSON_ORIN, JETSON_ORIN_NX, JETSON_ORIN_NANO, JETSON_THOR_REFERENCE]
 
-#FORECR_BOARD_TYPE = 'RAIBOARD_AGX' # compatible with RAIBOARD-AGX
-#FORECR_BOARD_TYPE = 'DSBOARD_AGXMAX' # compatible with DSBOARD-AGXMAX rev-1.2 or newer
-#FORECR_BOARD_TYPE = 'DSBOARD_AGXMAX_Rev-1.1' # compatible with DSBOARD-AGXMAX rev-1.0 or 1.1
-#FORECR_BOARD_TYPE = 'DSBOARD_AGX' # compatible with DSBOARD-AGX
-#FORECR_BOARD_TYPE = 'MILBOARD_ORNX' # compatible with MILBOARD-ORNX
-#FORECR_BOARD_TYPE = 'RAIBOARD_ORNX' # compatible with RAIBOARD-ORNX
-#FORECR_BOARD_TYPE = 'DSBOARD_ORNX' # compatible with DSBOARD-ORNX
-#FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN' # compatible with DSBOARD-ORNX-LAN rev-1.1 or newer
-#FORECR_BOARD_TYPE = 'DSBOARD_ORNX_LAN_Rev-1.0' # compatible with DSBOARD-ORNX-LAN rev-1.0
-#FORECR_BOARD_TYPE = 'DSBOARD_XV2' # compatible with DSBOARD-XV2
-FORECR_BOARD_TYPE = 'DSBOARD_NX2' # compatible with DSBOARD-NX2 rev-1.23 or newer
-#FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.22' # compatible with DSBOARD-NX2 rev-1.22
-#FORECR_BOARD_TYPE = 'DSBOARD_NX2_Rev-1.21' # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.21
+FORECR_COMPATIBLE_BOARD_TYPES = [
+    'RAIBOARD-AGX', # compatible with RAIBOARD-AGX
+    'DSBOARD-AGXMAX_Rev-1.1', # compatible with DSBOARD-AGXMAX rev-1.0 or 1.1
+    'DSBOARD-AGXMAX', # compatible with DSBOARD-AGXMAX rev-1.2 or newer
+    'DSBOARD-AGX', # compatible with DSBOARD-AGX
+    'MILBOARD-ORNX', # compatible with MILBOARD-ORNX
+    'RAIBOARD-ORNX', # compatible with RAIBOARD-ORNX
+    'DSBOARD-ORNX-LAN_Rev-1.0', # compatible with DSBOARD-ORNX-LAN rev-1.0
+    'DSBOARD-ORNX-LAN', # compatible with DSBOARD-ORNX-LAN rev-1.1 or newer
+    'DSBOARD-ORNX', # compatible with DSBOARD-ORNX
+    'DSBOARD-XV2', # compatible with DSBOARD-XV2
+    'DSBOARD-NX2_Rev-1.21', # compatible with DSBOARD-NX2 from rev-1.0 to rev-1.21
+    'DSBOARD-NX2_Rev-1.22', # compatible with DSBOARD-NX2 rev-1.22
+    'DSBOARD-NX2' # compatible with DSBOARD-NX2 rev-1.23 or newer
+]
+FORECR_BOARD_TYPE = 'DSBOARD-NX2'
 
 # These arrays contain tuples of all the relevant GPIO data for each Jetson
 # Platform. The fields are:
@@ -91,7 +94,7 @@ JETSON_ORIN_NX_PIN_DEFS = [
     (51, 'PI.00', "tegra234-gpio", 40, 21, 'I2S0_SDOUT', 'GP123', None, None, 0x2434090)
 ]
 # MILBOARD-ORNX, RAIBOARD-ORNX, DSBOARD-ORNX, DSBOARD-ORNX-LAN & DSBOARD-NX2
-if FORECR_BOARD_TYPE == 'MILBOARD_ORNX':
+if FORECR_BOARD_TYPE == 'MILBOARD-ORNX':
     JETSON_ORIN_NX_PIN_DEFS_MILBOARD_ORNX = [
         (12, 'PCC.00', "tegra234-gpio-aon", 41, 41, 'M2B_ENABLE1', 'M2B_ENABLE1', None, None),
         (98, 'PP.06', "tegra234-gpio", 42, 42, 'M2B_ENABLE2', 'M2B_ENABLE2', None, None),
@@ -111,7 +114,7 @@ if FORECR_BOARD_TYPE == 'MILBOARD_ORNX':
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_MILBOARD_ORNX)
 
-elif FORECR_BOARD_TYPE == 'RAIBOARD_ORNX':
+elif FORECR_BOARD_TYPE == 'RAIBOARD-ORNX':
     JETSON_ORIN_NX_PIN_DEFS_RAIBOARD_ORNX = [
         (51, 'PI.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (52, 'PI.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -141,7 +144,7 @@ elif FORECR_BOARD_TYPE == 'RAIBOARD_ORNX':
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_RAIBOARD_ORNX)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX':
+elif FORECR_BOARD_TYPE == 'DSBOARD-ORNX':
     JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX = [
         (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -160,7 +163,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX':
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN':
+elif FORECR_BOARD_TYPE == 'DSBOARD-ORNX-LAN':
     JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN = [
         (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -177,7 +180,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN':
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN_Rev-1.0':
+elif FORECR_BOARD_TYPE == 'DSBOARD-ORNX-LAN_Rev-1.0':
     JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN = [
         (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -191,7 +194,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_ORNX_LAN_Rev-1.0':
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_ORNX_LAN)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2':
     JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2 = [
         (122, 'PY.00', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (123, 'PY.01', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -208,7 +211,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2_Rev-1.22':
     JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0, '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1, '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -225,7 +228,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
     ]
     JETSON_ORIN_NX_PIN_DEFS.extend(JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2_Rev-1.21':
     JETSON_ORIN_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0, '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1, '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -291,7 +294,7 @@ JETSON_ORIN_PIN_DEFS = [
 ]
 
 # RAIBOARD-AGX, DSBOARD-AGX & DSBOARD-AGXMAX
-if FORECR_BOARD_TYPE == 'RAIBOARD_AGX':
+if FORECR_BOARD_TYPE == 'RAIBOARD-AGX':
     JETSON_ORIN_PIN_DEFS_RAIBOARD_AGX = [
         (50, 'PH.07', "tegra234-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (51, 'PI.00', "tegra234-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -312,7 +315,7 @@ if FORECR_BOARD_TYPE == 'RAIBOARD_AGX':
     ]
     JETSON_ORIN_PIN_DEFS.extend(JETSON_ORIN_PIN_DEFS_RAIBOARD_AGX)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_AGXMAX':
+elif FORECR_BOARD_TYPE == 'DSBOARD-AGXMAX':
     JETSON_ORIN_PIN_DEFS_DSBOARD_AGXMAX = [
         (9, 'PBB.01', "tegra234-gpio-aon", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (8, 'PBB.00', "tegra234-gpio-aon", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -336,7 +339,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_AGXMAX':
     ]
     JETSON_ORIN_PIN_DEFS.extend(JETSON_ORIN_PIN_DEFS_DSBOARD_AGXMAX)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_AGXMAX_Rev-1.1':
+elif FORECR_BOARD_TYPE == 'DSBOARD-AGXMAX_Rev-1.1':
     JETSON_ORIN_PIN_DEFS_DSBOARD_AGXMAX = [
         (9, 'PBB.01', "tegra234-gpio-aon", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (8, 'PBB.00', "tegra234-gpio-aon", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -359,7 +362,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_AGXMAX_Rev-1.1':
     ]
     JETSON_ORIN_PIN_DEFS.extend(JETSON_ORIN_PIN_DEFS_DSBOARD_AGXMAX)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_AGX':
+elif FORECR_BOARD_TYPE == 'DSBOARD-AGX':
     JETSON_ORIN_PIN_DEFS_DSBOARD_AGX = [
         (0, '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1, '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -448,7 +451,7 @@ compats_nx = (
     'nvidia,p3449-0000+p3668-0003',
 )
 # DSBOX-NX2 IIO Pins
-if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
+if FORECR_BOARD_TYPE == 'DSBOARD-NX2':
     JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
         (149, 'PY.00', "tegra194-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (150, 'PY.01', "tegra194-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -465,7 +468,7 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     ]
     JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2_Rev-1.22':
     JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -482,7 +485,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
     ]
     JETSON_NX_PIN_DEFS.extend(JETSON_NX_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2_Rev-1.21':
     JETSON_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -533,7 +536,7 @@ compats_xavier = (
 )
 
 # DSBOARD-XV2
-if FORECR_BOARD_TYPE == 'DSBOARD_XV2':
+if FORECR_BOARD_TYPE == 'DSBOARD-XV2':
     JETSON_XAVIER_PIN_DEFS_DSBOARD_XV2 = [
         (0, '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1, '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -574,7 +577,7 @@ compats_tx2_nx = (
     'nvidia,p3509-0000+p3636-0001',
 )
 # DSBOX-TX2NX IIO Pins
-if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
+if FORECR_BOARD_TYPE == 'DSBOARD-NX2':
     JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
         (17, 'PV.01', "tegra-gpio-aon", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (18, 'PV.02', "tegra-gpio-aon", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -591,7 +594,7 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     ]
     JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2_Rev-1.22':
     JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -608,7 +611,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
     ]
     JETSON_TX2_NX_PIN_DEFS.extend(JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2_Rev-1.21':
     JETSON_TX2_NX_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -724,7 +727,7 @@ compats_nano = (
     'nvidia,jetson-nano',
 )
 # DSBOX-N2 IIO Pins
-if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
+if FORECR_BOARD_TYPE == 'DSBOARD-NX2':
     JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
         (14,  '', "tegra-gpio", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (13,  '', "tegra-gpio", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -741,7 +744,7 @@ if FORECR_BOARD_TYPE == 'DSBOARD_NX2':
     ]
     JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2_Rev-1.22':
     JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
@@ -758,7 +761,7 @@ elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.22':
     ]
     JETSON_NANO_PIN_DEFS.extend(JETSON_NANO_PIN_DEFS_DSBOARD_NX2)
 
-elif FORECR_BOARD_TYPE == 'DSBOARD_NX2_Rev-1.21':
+elif FORECR_BOARD_TYPE == 'DSBOARD-NX2_Rev-1.21':
     JETSON_NANO_PIN_DEFS_DSBOARD_NX2 = [
         (0,  '', "pcf8574a", 41, 41, 'DIGITAL_IN0', 'DIGITAL_IN0', None, None),
         (1,  '', "pcf8574a", 42, 42, 'DIGITAL_IN1', 'DIGITAL_IN1', None, None),
