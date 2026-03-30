@@ -17,6 +17,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+import argparse
 from lib.python.Jetson.GPIO.gpio_pin_data import FORECR_COMPATIBLE_BOARD_TYPES, FORECR_BOARD_TYPE
 
 gpio_pin_data_file = "lib/python/Jetson/GPIO/gpio_pin_data.py"
@@ -93,22 +94,37 @@ def update_lib_board_config(new_board_config):
         print(gpio_pin_data_file + " updated for " + new_board_config + " successfully!")
 
 
+print("*** Jetson-GPIO Configuration Tool for forecr products ***")
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--interactive", action='store_true', help="Run with iteractive mode (to verify the board config and/or change it manually)")
+parser.add_argument('-v', '--verbose', action='store_true')
+args = parser.parse_args()
+
+if args.help:
+    parser.print_help()
+    exit()
+if args.verbose:
+    print_extra_messages = True
+if args.interactive:
+    print("Interactive Mode: On")
+
 print("Default " + get_lib_board_config())
 
 update_lib_board_config(get_system_config())
 
 print("New " + get_lib_board_config())
 
-selection = input('Do you want to change it? [y/n] ').lower()
-if selection.startswith('y'):
-    print("")
-    print("Compatible board list:")
-    for board_name in FORECR_COMPATIBLE_BOARD_TYPES:
-        print("--> " + board_name)
-    print("")
-    update_lib_board_config(input('Please type the correct board config: '))
-    print("New " + get_lib_board_config())
-else:
-    print("Skipping...")
+if args.interactive:
+    selection = input('Do you want to change it? [y/n] ').lower()
+    if selection.startswith('y'):
+        print("")
+        print("Compatible board list:")
+        for board_name in FORECR_COMPATIBLE_BOARD_TYPES:
+            print("--> " + board_name)
+        print("")
+        update_lib_board_config(input('Please type the correct board config: '))
+        print("New " + get_lib_board_config())
+    else:
+        print("Skipping...")
 
 print("Done.")
